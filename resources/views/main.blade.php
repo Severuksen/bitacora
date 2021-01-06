@@ -2,7 +2,7 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    {{-- <meta name="viewport" content="width=device-width, initial-scale=2.0"> --}}
+    <meta name="viewport" content="width=760, initial-scale=0.4">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" type="text/css" href="{{asset('css/app.css')}}">
     <link rel="stylesheet" type="text/css"  media="screen" href="{{asset('css/main.css')}}">
@@ -37,6 +37,8 @@
         </div>
     </header>
     @yield('cuerpo')
+</body>
+</html>
 
     {{-- <div class="tab">
         <button class='enlaces' onclick='abrir(event, "mantenimiento");'>MANTENIMIENTO</button>
@@ -48,5 +50,3 @@
     <div id="datos" class="contenido" style="display: none;">
         <h1>DATOS TECNICOS</h1>
     </div> --}}
-</body>
-</html>

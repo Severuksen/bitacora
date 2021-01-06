@@ -14,6 +14,13 @@ header{
     width: 326px;
     height: 400px;
     margin: 13px;
+    z-index: 99;
+}
+.section-gruas:hover{
+    cursor: pointer;
+    box-shadow: 5px 5px 5px 5px black;
+    -moz-box-shadow: inset 0 0 10px black;
+    -webkit-box-shadow: inset 0 0 10px black;
 }
 div.gruas-gris{
     display: block;
