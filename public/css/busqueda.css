@@ -1,0 +1,60 @@
+header{
+    height: 200px;
+}
+.container{
+    max-width: 1500px;
+    min-width: 760px;
+}
+.container > label{
+    font-size: 30px;
+    font-weight: 700;
+}
+.section-gruas{
+    display: inline-block;
+    width: 326px;
+    height: 400px;
+    margin: 13px;
+}
+div.gruas-gris{
+    display: block;
+    width: inherit;
+    height: 304px;
+    background-color: rgb(226,226,226);
+    border: 1px solid gray;
+    border-bottom: unset;
+}
+div.gruas-blanco{
+    display: block;
+    width: inherit;
+    height: 96px;
+    background-color: white;
+    border: 1px solid gray;
+    border-top: unset;
+}
+div.gruas-forklift-pequena, div.gruas-forklift-grande, div.gruas-reachstacker{
+    display: block;
+    width: 269px;
+    height: 200px;
+    margin-top: 57px;
+    margin-left: 26px;
+    background-image: url('/img/forklift-pequena-roja.png');
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+}
+div.gruas-forklift-grande{
+    background-image: url('/img/forklift-grande-roja.png');
+}
+div.gruas-reachstacker{
+    background-image: url('/img/reachstacker.png');
+}
+div.gruas-descripcion{
+    display: inline-block;
+    width: 300px;
+    height: 66px;
+    margin-top: 10px;
+    margin-left: 13px;
+    font-size: 18px;
+}
+.gruas-descripcion > label{
+    font-size: 18px;
+}
