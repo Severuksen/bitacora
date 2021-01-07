@@ -26,6 +26,6 @@ Route::get('/', function(){
 Route::get('busqueda', function(){
     return view('busqueda');
 });
-Route::post('busqueda', function(){
-    return view('busqueda');
+Route::get('gruas', function(){
+    return view('gruas');
 });

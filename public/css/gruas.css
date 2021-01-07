@@ -1,0 +1,39 @@
+.grua-titulo{
+    display: block;
+    width: auto;
+    height: 30px;
+    margin-bottom: 20px;
+    font-weight: 700;
+}
+.grua-imagen{
+    display: block;
+    width: 536px;
+    height: 373px;
+    background-image: url('/img/reachstacker.png');
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+}
+.tab button {
+    border: none;
+    outline: none;
+    cursor: pointer;
+    padding: 14px 16px;
+    transition: 0.3s;
+    background-color: unset;
+}
+
+.tab button:hover {
+    background-color: unset;
+    font-weight: 700;
+    color: var(--rojo-gonavi);
+    border-bottom: 2px solid var(--rojo-gonavi);
+}
+
+.tab button.activo {
+    color: var(--rojo-gonavi);
+    font-weight: 700;
+    border-bottom: 2px solid var(--rojo-gonavi);
+}
+table{
+    margin-top: 10px;
+}

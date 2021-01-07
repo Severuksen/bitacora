@@ -17,11 +17,10 @@
             }
             enlaces = document.getElementsByClassName("enlaces");
             for (i = 0; i < enlaces.length; i++){
-                enlaces[i].className = enlaces[i].className.replace(" active", "");
+                enlaces[i].className = enlaces[i].className.replace(" activo", "");
             }
             document.getElementById(tabla).style.display = "flex";
-            evento.currentTarget.className += " active";
-            $("#enlace").val(tabla);
+            evento.currentTarget.className += " activo";
         }
     </script>
 </head>
@@ -40,13 +39,4 @@
 </body>
 </html>
 
-    {{-- <div class="tab">
-        <button class='enlaces' onclick='abrir(event, "mantenimiento");'>MANTENIMIENTO</button>
-        <button class='enlaces' onclick='abrir(event, "datos");'>DATOS TECNICOS</button>
-    </div>
-    <div id="mantenimiento" class="contenido" style="display: block;">
-        <h1>MANTENIMIENTO</h1>
-    </div>
-    <div id="datos" class="contenido" style="display: none;">
-        <h1>DATOS TECNICOS</h1>
-    </div> --}}
+
