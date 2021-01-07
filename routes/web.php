@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\GruasController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -23,9 +24,14 @@ Route::get('/', function(){
 /**
  * RUTAS DE BUSQUEDA
  */
-Route::get('busqueda', function(){
-    return view('busqueda');
+Route::get('busqueda', 'GruasController@getbusqueda');
+Route::post('busqueda', 'GruasController@postbusqueda');
+
+/**
+ * RUTAS DE GRUAS
+ */
+Route::get('grua/{id}', function($id){
+    $clase = new GruasController();
+    return $clase->getgruas($id);
 });
-Route::get('gruas', function(){
-    return view('gruas');
-});
+

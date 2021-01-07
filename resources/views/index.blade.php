@@ -11,8 +11,11 @@
             <div class="centrado">
                 <div class="block-section">
                     <label for="busqueda">Buscar grúas por:</label>
-                    <input type="search" class="busqueda" name="busqueda" id="busqueda" placeholder="SERIAL, MODELO O MARCA...">
-                    <div class="lupa"></div>
+                    <form method="POST" action="{{url('busqueda')}}">
+                        @csrf
+                        <input type="search" class="busqueda" name="busqueda" id="busqueda" placeholder="MODELO...">
+                        <input type="submit" class="lupa" value="">
+                    </form>
                 </div>
             </div>
         </div>
@@ -21,10 +24,7 @@
         <div class="container">
             <div class="centrado">
                 <div class="block-section">
-                    <form method="POST" action="{{url('/busqueda')}}">
-                        @csrf
-                        <input type="submit" class="boton-catalogo" value="CATÁLOGO DE GRÚAS">
-                    </form>
+                    <input type="submit" class="boton-catalogo" value="CATÁLOGO DE GRÚAS" onclick="window.location.assign('{{url('busqueda')}}')">
                 </div>
             </div>
         </div>

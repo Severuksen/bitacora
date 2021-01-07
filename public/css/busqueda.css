@@ -38,7 +38,7 @@ div.gruas-blanco{
     border: 1px solid gray;
     border-top: unset;
 }
-div.gruas-forklift-pequena, div.gruas-forklift-grande, div.gruas-reachstacker{
+div.gruas-imagen{
     display: block;
     width: 269px;
     height: 200px;
@@ -47,12 +47,6 @@ div.gruas-forklift-pequena, div.gruas-forklift-grande, div.gruas-reachstacker{
     background-image: url('/img/forklift-pequena-roja.png');
     background-size: 100% 100%;
     background-repeat: no-repeat;
-}
-div.gruas-forklift-grande{
-    background-image: url('/img/forklift-grande-roja.png');
-}
-div.gruas-reachstacker{
-    background-image: url('/img/reachstacker.png');
 }
 div.gruas-descripcion{
     display: inline-block;
@@ -63,5 +57,6 @@ div.gruas-descripcion{
     font-size: 18px;
 }
 .gruas-descripcion > label{
+    display: block;
     font-size: 18px;
 }

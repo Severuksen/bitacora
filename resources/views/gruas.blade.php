@@ -2,7 +2,7 @@
 
 @section('titulo')
     <link rel="stylesheet" type="text/css" media="screen" href="{{asset('css/gruas.css')}}">
-    <title>@isset($grua){{$grua}}@endisset :: BITÁCORA</title>
+    <title>@isset($modelo){{$modelo}}@endisset :: BITÁCORA</title>
     <style>
 
     </style>
@@ -14,9 +14,9 @@
             <div class="row">
                 <div class="col-sm-6">
                     <div class="grua-titulo">
-                        <h2><b>REACH STACKER KALMAR B220</b></h2>
+                        <h2><b>@isset($modelo){{$tipo.' '.$modelo}}@endisset</b></h2>
                     </div>
-                    <div class="grua-imagen"></div>
+                    <div class="grua-imagen" style="background-image: url('{{asset($img)}}');"></div>
                 </div>
                 <div class="col-sm-6">
                     <div class="grua-tab">
@@ -27,33 +27,36 @@
                             <button class='enlaces' onclick='abrir(event, "manuales");'>MANUALES</button>
                         </div>
                         <div id="mantenimiento" class="contenido" style="display: block;">
-                            <table border="1">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th width="200px"><b>Fecha del último servicio: </b></th>
+                                        <th width="200px">@isset($fecha){{$fecha}}@endisset</th>
+                                    </tr>
+                                </thead>
                                 <tbody>
                                     <tr>
-                                        <td>Fecha del último servicio: </td>
-                                        <td>10/02/2020</td>
+                                        <td><b>Horas de uso: </b></td>
+                                        <td>@isset($horas){{$horas}}@endisset hrs.</td>
                                     </tr>
                                     <tr>
-                                        <td>Horas de uso: </td>
-                                        <td>100 hrs.</td>
+                                        <td><b>Mantenimiento realizado: </b></td>
+                                        <td>@isset($mantenimiento){{$mantenimiento}}@endisset</td>
                                     </tr>
                                     <tr>
-                                        <td>Cambio de piezas: </td>
-                                        <td>Lineas, Neumáticos</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Cambio de aceite</td>
-                                        <td>Si</td>
+                                        <td><b>Observaciones: </b></td>
+                                        <td>@isset($observaciones){{$observaciones}}@endisset</td>
                                     </tr>
                                 </tbody>
                             </table>
+                        </div>
+                        <div id="historial" class="contenido" style="display: none;">
+
                         </div>
                         <div id="datos" class="contenido" style="display: none;">
                             <p><b>Lorem</b> ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum</p>
                         </div>
                         <div id="manuales" class="contenido" style="display: none;">
-                        </div>
-                        <div id="historial" class="contenido" style="display: none;">
                         </div>
                     </div>
                 </div>

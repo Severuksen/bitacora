@@ -9,31 +9,31 @@
     <section>
         <div class="container">
             @isset($busqueda)
-                <label>RESULTADOS DE LA BÚSQUEDA: {{$busqueda}}</label>
+                <label>RESULTADOS DE LA BÚSQUEDA: "{{$busqueda}}"</label>
             @else
                 <label>CATÁLOGO DE GRÚAS</label>
             @endisset
         </div>
     </section>
     <section>
-        <?php
-            $gruas = ['gruas-forklift-pequena', 'gruas-forklift-grande', 'gruas-reachstacker','gruas-reachstacker','gruas-reachstacker','gruas-reachstacker'];
-            $descripcion = ['FORKLIFT HELI B700', 'FORKLIFT HELI B900', 'REACH STACKER KALMAR B220', 'REACH STACKER KALMAR B221', 'REACH STACKER KALMAR B222', 'REACH STACKER KALMAR B223'];
-        ?>
         <div class="container">
-            @for($i=0;$i<count($gruas);$i++)
-                <div class="section-gruas">
-                    <div class="gruas-gris">
-                        <div class="{{$gruas[$i]}}"></div>
-                    </div>
-                    <div class="gruas-blanco">
-                        <div class="gruas-descripcion">
-                            <label><b>{{$descripcion[$i]}}</b></label>
-                            <label>Mantenimiento: 500 hrs.</label>
+            @isset($modelo)
+                @for($i=0;$i<count($modelo);$i++)
+                    <div class="section-gruas" onclick="window.location.assign('{{url('/grua/'.$id_grua[$i])}}');">
+                        <div class="gruas-gris">
+                            <div class="gruas-imagen" style="background-image: url('{{asset($img[$i])}}')"></div>
+                        </div>
+                        <div class="gruas-blanco">
+                            <div class="gruas-descripcion">
+                                <label><b>{{$tipo[$i]}} {{$modelo[$i]}}</b></label>
+                                <label>Servicios: {{$horas[$i]}} hrs.</label>
+                            </div>
                         </div>
                     </div>
-                </div>
-            @endfor
+                @endfor
+            @else
+                <br><br><h2>NO SE ENCONTRARON RESULTADOS.</h2>
+            @endisset
         </div>
     </section>
     <footer>

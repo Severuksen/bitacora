@@ -18,6 +18,8 @@ class CreateGruasTable extends Migration
             $table->string('tipo_grua', 13);
             $table->string('fab_grua', 30);
             $table->string('mod_grua', 50);
+            $table->integer('horas');
+            $table->string('img', 100);
             $table->timestamps();
         });
     }
