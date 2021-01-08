@@ -13,11 +13,11 @@ class ServiciosSeeder extends Seeder
     public function run()
     {
         $servicios = [
-            0 => ['fecha' => date('Y-m-d'), 'id_grua' => '1', 'id_man' => '1', 'observaciones' => 'Motor funcionando con deficiencia.'],
-            1 => ['fecha' => date('Y-m-d'), 'id_grua' => '2', 'id_man' => '2', 'observaciones' => 'Dos lineas nuevas.'],
-            2 => ['fecha' => date('Y-m-d'), 'id_grua' => '3', 'id_man' => '3', 'observaciones' => 'Tuercas dañadas.'],
-            3 => ['fecha' => date('Y-m-d'), 'id_grua' => '4', 'id_man' => '2', 'observaciones' => 'Pirelli por Goodyear'],
-            4 => ['fecha' => date('Y-m-d'), 'id_grua' => '5', 'id_man' => '5', 'observaciones' => '']
+            0 => ['fecha' => date('Y-m-d'), 'id_grua' => '1', 'id_man' => '1', 'observaciones' => 'Motor funcionando con deficiencia.', 'estado' => 'ACTIVO'],
+            1 => ['fecha' => date('Y-m-d'), 'id_grua' => '2', 'id_man' => '2', 'observaciones' => 'Dos lineas nuevas.', 'estado' => 'ACTIVO'],
+            2 => ['fecha' => date('Y-m-d'), 'id_grua' => '3', 'id_man' => '3', 'observaciones' => 'Tuercas dañadas.', 'estado' => 'ACTIVO'],
+            3 => ['fecha' => date('Y-m-d'), 'id_grua' => '4', 'id_man' => '2', 'observaciones' => 'Pirelli por Goodyear.', 'estado' => 'ACTIVO'],
+            4 => ['fecha' => date('Y-m-d'), 'id_grua' => '5', 'id_man' => '5', 'observaciones' => 'Aceite medido y cambiado.', 'estado' => 'ACTIVO']
         ];
 
         foreach($servicios as $campo => $valor){

@@ -13,11 +13,11 @@ class GruasSeeder extends Seeder
     public function run()
     {
         $gruas = [
-            0 => ['tipo_grua' => 'Forklift', 'fab_grua' => 'Heli', 'mod_grua' => 'Heli B700', 'horas' => '200', 'img' => '/img/forklift-pequena-roja.png'],
-            1 => ['tipo_grua' => 'Forklift', 'fab_grua' => 'Heli', 'mod_grua' => 'Heli B900', 'horas' => '100', 'img' => '/img/forklift-grande-roja.png'],
-            2 => ['tipo_grua' => 'Reach Stacker', 'fab_grua' => 'Kalmar', 'mod_grua' => 'Kalmar B220', 'horas' => '150', 'img' => '/img/reachstacker.png'],
-            3 => ['tipo_grua' => 'Reach Stacker', 'fab_grua' => 'Kalmar', 'mod_grua' => 'Kalmar B221', 'horas' => '120', 'img' => '/img/reachstacker.png'],
-            4 => ['tipo_grua' => 'Reach Stacker', 'fab_grua' => 'Kalmar', 'mod_grua' => 'Kalmar B222', 'horas' => '130', 'img' => '/img/reachstacker.png']
+            0 => ['tipo_grua' => 'Forklift', 'fab_grua' => 'Heli', 'mod_grua' => 'Heli B700', 'horas' => '200', 'img' => '/img/forklift-pequena-roja.png', 'estado' => 'ACTIVO'],
+            1 => ['tipo_grua' => 'Forklift', 'fab_grua' => 'Heli', 'mod_grua' => 'Heli B900', 'horas' => '100', 'img' => '/img/forklift-grande-roja.png', 'estado' => 'ACTIVO'],
+            2 => ['tipo_grua' => 'Reach Stacker', 'fab_grua' => 'Kalmar', 'mod_grua' => 'Kalmar B220', 'horas' => '150', 'img' => '/img/reachstacker.png', 'estado' => 'ACTIVO'],
+            3 => ['tipo_grua' => 'Reach Stacker', 'fab_grua' => 'Kalmar', 'mod_grua' => 'Kalmar B221', 'horas' => '120', 'img' => '/img/reachstacker.png', 'estado' => 'ACTIVO'],
+            4 => ['tipo_grua' => 'Reach Stacker', 'fab_grua' => 'Kalmar', 'mod_grua' => 'Kalmar B222', 'horas' => '130', 'img' => '/img/reachstacker.png', 'estado' => 'ACTIVO']
         ];
 
         foreach($gruas as $campo => $valor){

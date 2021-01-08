@@ -4,25 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=760, initial-scale=0.4">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script type="application/ecmascript" src="{{asset('js/jquery-3.5.1.min.js')}}"></script>
+    <script type="application/ecmascript" src="{{asset('js/func.js')}}"></script>
     <link rel="stylesheet" type="text/css" href="{{asset('css/app.css')}}">
     <link rel="stylesheet" type="text/css"  media="screen" href="{{asset('css/main.css')}}">
     @yield('titulo')
     <title>BITACORA :: PÁGINA PRINCIPAL</title>
-    <script>
-        function abrir(evento, tabla) {
-            var i, contenido, enlaces;
-            contenido = document.getElementsByClassName("contenido");
-            for (i = 0; i < contenido.length; i++){
-                contenido[i].style.display = "none";
-            }
-            enlaces = document.getElementsByClassName("enlaces");
-            for (i = 0; i < enlaces.length; i++){
-                enlaces[i].className = enlaces[i].className.replace(" activo", "");
-            }
-            document.getElementById(tabla).style.display = "flex";
-            evento.currentTarget.className += " activo";
-        }
-    </script>
 </head>
 <body>
     <header>
@@ -34,6 +21,16 @@
                 <img src="{{asset('img/bitacora.png')}}" width="250px" height="69px" alt="Logo de Bitátoca">
             </div>
         </div>
+        {{-- <div class="header-menu">
+            <a class="header-menu-boton" href="#"></a>
+            <div class="header-menu-opciones">
+                <ul>
+                    <li><a href="">INICIO</a></li>
+                    <li><a href="">GRÚAS</a></li>
+                    <li><a href="">MANTENIMIENTO</a></li>
+                </ul>
+            </div>
+        </div> --}}
     </header>
     @yield('cuerpo')
 </body>

@@ -24,7 +24,8 @@
         <div class="container">
             <div class="centrado">
                 <div class="block-section">
-                    <input type="submit" class="boton-catalogo" value="CATÁLOGO DE GRÚAS" onclick="window.location.assign('{{url('busqueda')}}')">
+                    <input type="submit" class="boton-catalogo" value="CATÁLOGO DE GRÚAS" onclick="window.location.assign('{{url('busqueda')}}');">
+                    <input type="submit" class="boton-catalogo-verde" value="MENÚ" onclick="window.location.assign('{{url('menu')}}');">
                 </div>
             </div>
         </div>

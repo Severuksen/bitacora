@@ -41,17 +41,26 @@ input#busqueda {
     background-size: 100% 100%;
     background-repeat: no-repeat;
 }
-.boton-catalogo{
-    width: 300px;
-    height: 88px;
+.boton-catalogo, .boton-catalogo-verde{
+    width: 330px;
+    height: 89px;
     color: white;
     background-color: var(--rojo-gonavi);
     border: 0;
     font-size: 20px;
     font-weight: 700;
 }
-.boton-catalogo:hover{
+.boton-catalogo-verde{
+    width: 120px;
+    height: 89px;
+    background-color: var(--verde);
+}
+.boton-catalogo:hover, .boton-catalogo-verde:hover{
     color: var(--rojo-gonavi);
     border: 2px solid var(--rojo-gonavi);
     background-color: white;
+}
+.boton-catalogo-verde:hover{
+    color: var(--verde);
+    border: 2px solid var(--verde);
 }

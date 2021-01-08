@@ -26,7 +26,8 @@
                         <div class="gruas-blanco">
                             <div class="gruas-descripcion">
                                 <label><b>{{$tipo[$i]}} {{$modelo[$i]}}</b></label>
-                                <label>Servicios: {{$horas[$i]}} hrs.</label>
+                                <label>En servicio: {{$horas[$i]}} hrs.</label>
+                                <label>Estado: <b>{{$estado[$i]}}</b></label>
                             </div>
                         </div>
                     </div>

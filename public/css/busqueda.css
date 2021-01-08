@@ -52,11 +52,13 @@ div.gruas-descripcion{
     display: inline-block;
     width: 300px;
     height: 66px;
-    margin-top: 10px;
+    margin-top: 6px;
     margin-left: 13px;
     font-size: 18px;
 }
 .gruas-descripcion > label{
     display: block;
     font-size: 18px;
+    line-height: unset;
+    margin-bottom: 0px;
 }

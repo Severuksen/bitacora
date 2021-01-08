@@ -38,3 +38,28 @@ table{
     margin-top: 15px;
     font-size: 16px;
 }
+.historial{
+    display: block;
+    width: inherit;
+    height: 355px;
+    margin-top: 20px;
+    overflow-y: scroll;
+}
+.historial > button{
+    display: block;
+    width: 354px;
+    height: 60px;
+    background-color: var(--rojo-gonavi);
+    color: white;
+    font-weight: 700;
+    border: 0;
+    margin: 11px;
+}
+.historial > button:hover {
+    background-color: white;
+    color: var(--rojo-gonavi);
+    border: 2px solid var(--rojo-gonavi);
+}
+.col-xs-6{
+    margin: 5px;
+}

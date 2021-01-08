@@ -30,8 +30,11 @@ Route::post('busqueda', 'GruasController@postbusqueda');
 /**
  * RUTAS DE GRUAS
  */
-Route::get('grua/{id}', function($id){
-    $clase = new GruasController();
-    return $clase->getgruas($id);
-});
+Route::get('grua/{id}', 'GruasController@getgruas');
+
+/**
+ * RUTAS DE BUSQUEDA
+*/
+Route::get('menu','GruasController@getmenu');
+
 

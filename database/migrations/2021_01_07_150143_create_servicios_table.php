@@ -19,6 +19,7 @@ class CreateServiciosTable extends Migration
             $table->bigInteger('id_grua')->unsigned();
             $table->bigInteger('id_man')->unsigned();
             $table->string('observaciones', 200)->nullable();
+            $table->string('estado', 8)->default('ACTIVO');
             $table->foreign('id_grua')
                 ->references('id_grua')
                 ->on('gruas')

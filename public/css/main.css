@@ -1,5 +1,6 @@
 :root{
     --rojo-gonavi: rgb(194, 33, 54);
+    --verde: rgb(43,138,128);
 }
 header{
     display: block;
@@ -15,8 +16,50 @@ header{
     align-items: center;
 }
 .header-contenedor{
+    float: left;
+}
+.header-menu{
+    display: block;
+    float: right;
     margin-top: 10px;
-    margin-left: 10px;
+    margin-right: 10px;
+    border: 1px solid;
+}
+
+
+/* .header-menu-opciones:hover,.header-menu-boton:hover+.header-menu-opciones{
+    display: block;
+} */
+
+.header-menu-boton{
+    width: 60px;
+    height: 60px;
+    cursor: pointer;
+    background-image: url('/img/menu.png');
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+}
+.header-menu-opciones{
+    display: block;
+}
+div.header-menu-opciones > ul {
+    list-style: none;
+    width: 200px;
+    height: 28px;
+    padding-inline-start: 0px;
+}
+div.header-menu-opciones > ul > li{
+    display: inline;
+    color: var(--rojo-gonavi);
+    padding: 27px 20px 26px 55px;
+    cursor: pointer;
+}
+div.header-menu-opciones > ul > li:hover{
+    color: rgb(47,85,151);
+    background-color: white;
+}
+div.header-menu-opciones > ul > li > a {
+    cursor: pointer;
 }
 .gonavi-logo, .bitacora-logo{
     display: inline-block;
@@ -32,4 +75,13 @@ header{
     margin-top: unset;
     margin-left: 20px;
     border-right: unset;
+}
+@-webkit-keyframes fadeEffect {
+    from {opacity: 0;}
+    to {opacity: 1;}
+}
+
+@keyframes fadeEffect {
+    from {opacity: 0;}
+    to {opacity: 1;}
 }
