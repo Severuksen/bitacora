@@ -1,3 +1,15 @@
+$(function(){
+    $('#modificargrua').on('change', function(){
+        let data = $('#modificarform').serialize()+'&seleccionargrua=1';
+        $.post({url: '/menu', data, success: function(grua){
+            $('#modificartipo').val(grua[0]);
+            $('#modificarfabricante').val(grua[1]);
+            $('#modificarmodelo').val(grua[2]);
+            $('#modificarestado').val(grua[3]);
+        }});
+    });
+});
+
 function abrir(evento, tabla) {
     "use strict";
     var i, contenido, enlaces;
@@ -12,7 +24,6 @@ function abrir(evento, tabla) {
     document.getElementById(tabla).style.display = "flex";
     evento.currentTarget.className += " activo";
 }
-
 
 function historial(evento) {
     var contenido = document.getElementsByClassName("info");

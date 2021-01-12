@@ -3,12 +3,6 @@
 @section('titulo')
     <link rel="stylesheet" type="text/css" media="screen" href="{{asset('css/menu.css')}}">
     <title>MENU :: BITÁCORA</title>
-    <style>
-        label#respuesta{
-            margin-top: 5px;
-            font-size: 15px;
-        }
-    </style>
 @endsection
 
 @section('cuerpo')
@@ -52,7 +46,7 @@
                                     <input type="text" id="agregardireccion" name="agregardireccion" placeholder="Imagen..." value="" disabled>
                                     <input type="button" name="agregarcarga" id="agregarcarga" onclick="cargar('agregarfoto');">
                                     <input type="file" id="agregarfoto" name="agregarfoto" accept=".png" onchange="direccion(event, 'agregardireccion');">
-                                    <label id="respuesta">@isset($mensaje){{$mensaje}}@endisset</label>
+                                    <label class="respuesta">@isset($agregarmensaje){{$agregarmensaje}}@endisset</label>
                                 </div>
                                 <div class="agregar-boton">
                                     <input type="submit" id="agregar" name="agregar" value="AGREGAR">
@@ -70,14 +64,17 @@
                         </div>
                     </div>
                     <div class="modificar-abajo">
-                        <form method="POST" action="{{url('menu')}}" enctype="multipart/form-data">
+                        <form id="modificarform" method="POST" action="{{url('menu')}}" enctype="multipart/form-data">
                             @csrf
                             <div class="container">
                                 <div class="modificar-seleccion">
-                                    <label for="modificargrua">Seleccionar una grúa:</label>
+                                    <label for="modificargrua">Selecciona una grúa:</label>
                                     <select id="modificargrua" name="modificargrua">
-                                        <option value="Kalmar B220" selected>Kalmar B220</option>
-                                        <option value="Kalmar B222">Kalmar B222</option>
+                                        @isset($gruas)
+                                            @foreach ($gruas as $grua)
+                                                <option value="{{$grua->id_grua}}">{{$grua->mod_grua}}</option>
+                                            @endforeach
+                                        @endisset
                                     </select>
                                 </div>
                                 <div class="modificar-tipo">
@@ -107,6 +104,7 @@
                                     <input type="text" id="modificardireccion" name="modificardireccion" placeholder="Imagen..." value="" disabled>
                                     <input type="button" name="modificarcarga" id="modificarcarga" onclick="cargar('modificarfoto');">
                                     <input type="file" id="modificarfoto" name="modificarfoto" accept=".png" onchange="direccion(event, 'modificardireccion');">
+                                    <label class="respuesta">@isset($modificarmensaje){{$modificarmensaje}}@endisset</label>
                                 </div>
                                 <div class="modificar-boton">
                                     <input type="submit" id="modificar" name="modificar" value="MODIFICAR">
@@ -130,9 +128,11 @@
                                 <div class="eliminar-seleccion">
                                     <label for="eliminargrua">Seleccionar una grúa:</label>
                                     <select id="eliminargrua" name="eliminargrua">
-                                        <option value="Kalmar B220" selected>Kalmar B220</option>
-                                        <option value="Kalmar B222">Kalmar B222</option>
+                                        @foreach ($gruas as $grua)
+                                            <option value="{{$grua->id_grua}}">{{$grua->mod_grua}}</option>
+                                        @endforeach
                                     </select>
+                                    <label class="respuesta">@isset($eliminarmensaje){{$eliminarmensaje}}@endisset</label>
                                 </div>
                                 <div class="eliminar-boton">
                                     <input type="submit" id="eliminar" name="eliminar" value="ELIMINAR">

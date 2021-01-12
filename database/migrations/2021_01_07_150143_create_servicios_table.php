@@ -18,7 +18,7 @@ class CreateServiciosTable extends Migration
             $table->date('fecha');
             $table->bigInteger('id_grua')->unsigned();
             $table->bigInteger('id_man')->unsigned();
-            $table->integer('horas', 4)->default(0)->nullable();
+            $table->integer('horas')->unsigned()->default(0);
             $table->string('observaciones', 200)->nullable();
             $table->string('estado', 8)->default('ACTIVO');
             $table->foreign('id_grua')

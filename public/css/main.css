@@ -1,3 +1,11 @@
+@media (max-width: 1080px){
+    .row {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        align-items: center;
+    }
+}
 :root{
     --rojo-gonavi: rgb(194, 33, 54);
     --verde: rgb(43,138,128);

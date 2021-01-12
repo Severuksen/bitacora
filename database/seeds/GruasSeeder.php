@@ -25,7 +25,6 @@ class GruasSeeder extends Seeder
                 'tipo_grua' => $valor['tipo_grua'],
                 'fab_grua' => $valor['fab_grua'],
                 'mod_grua' => $valor['mod_grua'],
-                'horas' => $valor['horas'],
                 'img' => $valor['img']
             ]);
         }

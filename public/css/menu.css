@@ -9,10 +9,10 @@
     margin: 20px;
 }
 .modificar-contenedor{
-    height: 703px;
+    height: 732px;
 }
 .eliminar-contenedor{
-    height: 280px;
+    height: 314px;
 }
 .agregar-arriba, .modificar-arriba, .eliminar-arriba{
     display: inline-block;
@@ -111,4 +111,9 @@ div > input[type="submit"]:hover{
     background-color: var(--light);
     color: var(--verde-logo);
     border: 1px solid var(--verde-logo);
+}
+label.respuesta{
+    margin-top: 5px;
+    font-size: 15px;
+    padding-bottom: 5px;
 }
