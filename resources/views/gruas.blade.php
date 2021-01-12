@@ -16,7 +16,7 @@
                     <div class="grua-titulo">
                         <h2><b>@isset($servicios->tipo_grua){{$servicios->tipo_grua.' '.$servicios->mod_grua}}@endisset</b></h2>
                     </div>
-                    <div class="grua-imagen" style="background-image: url('@isset($servicios->img){{asset($servicios->img)}}@endisset');"></div>
+                    <div class="grua-imagen" style="background-image: url('@isset($servicios->img)<?= $servicios->img ?>@endisset');"></div>
                 </div>
                 <div class="col-xs-6">
                     <div class="grua-tab">

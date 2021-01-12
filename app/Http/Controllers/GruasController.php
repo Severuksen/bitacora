@@ -6,42 +6,37 @@ use Illuminate\Http\Request;
 use Illuminate\View\View;
 use App\Gruas;
 use App\Servicios;
+use Facade\FlareClient\Stacktrace\File;
 
 class GruasController extends Controller
 {
     /**
-     * Funcion de recepcion de las peticiones $_GET de la busqueda. Devuelve el catálogo completo de las gruas.
+     * Devuelve una lista completa de grúas.
      */
     public function getbusqueda()
     {
-        $gruas = Gruas::select(['gruas.id_grua', 'gruas.tipo_grua', 'gruas.img', 'servicios.horas', 'gruas.mod_grua', 'gruas.estado'])->join('servicios', 'servicios.id_grua', '=', 'gruas.id_grua')->orderBy('servicios.fecha', 'DESC')->get();
+        $gruas = Gruas::select(['id_grua', 'tipo_grua', 'img', 'mod_grua','estado'])->get();
 
-        [$id_grua, $modelo, $img, $horas, $tipo, $estado] = busqueda($gruas);
-
-        return view('busqueda', ['id_grua' => $id_grua, 'modelo' => $modelo, 'img' => $img, 'horas' => $horas, 'tipo' => $tipo, 'estado' => $estado]);
+        return view('busqueda', ['gruas' => $gruas]);
     }
 
     /**
-     * Funcion de recepcion de las peticiones $_POST de la busqueda. Devuelve los resultados de la busqueda de gruass.
+     * Devuelve una lista de grúas basadas en la busqueda.
      */
     public function postbusqueda(Request $request)
     {
-        $gruas = Gruas::select(['gruas.id_grua', 'gruas.tipo_grua', 'gruas.img', 'servicios.horas', 'gruas.mod_grua', 'gruas.estado'])->join('servicios', 'servicios.id_grua', '=', 'gruas.id_grua')->where('mod_grua', 'LIKE', "%$request->busqueda%")->get();
+        $query  = Gruas::select(['id_grua', 'tipo_grua', 'img', 'mod_grua','estado'])->whereMod_grua($request->busqueda);
+        $gruas  = $query->get();
+        $conteo = $query->count();
 
-        if(busqueda($gruas) == NULL)
+        if($conteo == "")
         {
             return view('busqueda', [
                 'busqueda' => $request->busqueda
             ]);
         } else {
-            [$id_grua, $modelo, $img, $horas, $tipo, $estado] = busqueda($gruas);
             return view('busqueda', [
-                'id_grua' => $id_grua,
-                'modelo' => $modelo,
-                'img' => $img,
-                'horas' => $horas,
-                'tipo' => $tipo,
-                'estado' => $estado,
+                'gruas' => $gruas,
                 'busqueda' => $request->busqueda
             ]);
         }
@@ -52,12 +47,13 @@ class GruasController extends Controller
      */
     public function getgruas($id_grua)
     {
-        $servicios = Servicios::select(['gruas.id_grua', 'gruas.tipo_grua', 'gruas.mod_grua', 'servicios.horas', 'servicios.fecha', 'mantenimiento.tipo_man', 'gruas.img', 'servicios.observaciones', 'gruas.estado'])
+        $servicios = Servicios::select(['gruas.id_grua', 'gruas.tipo_grua', 'gruas.mod_grua', 'servicios.horas', 'servicios.fecha', 'mantenimiento.tipo_man', 'gruas.img', 'servicios.observaciones', 'gruas.estado', 'manuales.manual'])
                     ->join('gruas', 'gruas.id_grua', '=', 'servicios.id_grua')
                     ->join('mantenimiento', 'mantenimiento.id_man', '=', 'servicios.id_man')
+                    ->join('manuales', 'manuales.id_grua', '=', 'gruas.id_grua')
                     ->where('servicios.id_grua', e($id_grua))->orderBy('servicios.fecha', 'DESC')->first();
 
-        $historial = Servicios::select(['servicios.fecha', 'servicios.horas', 'servicios.fecha', 'mantenimiento.tipo_man', 'servicios.observaciones', 'servicios.estado'])
+        $historial = Servicios::select(['servicios.fecha', 'servicios.horas', 'mantenimiento.tipo_man', 'servicios.observaciones', 'servicios.estado'])
                     ->join('gruas', 'servicios.id_grua', '=', 'gruas.id_grua')
                     ->join('mantenimiento', 'mantenimiento.id_man', '=', 'servicios.id_man')
                     ->where('servicios.id_grua', e($id_grua))->orderBy('servicios.fecha', 'DESC')->get();
@@ -74,9 +70,31 @@ class GruasController extends Controller
         }
     }
 
+    /**
+     *
+     */
     public function getmenu()
     {
         return view('menu');
+    }
+
+    public function postmenu(Request $request)
+    {
+        switch(true){
+            case (isset($request->agregar)):
+                Gruas::create(['tipo_grua' => e($request->agregartipo), 'fab_grua' => e($request->agregarfabricante), 'mod_grua' => e($request->agregarmodelo), 'estado' => e($request->agregarestado), 'img' => $this->img($request->file('agregarfoto'))]);
+                return view('menu', ['mensaje' => 'SE HA AGREGADO LA GRÚA.']);
+                break;
+            case (isset($request->modificar)):
+                break;
+            case (isset($request->eliminar)):
+                break;
+        }
+    }
+
+    public function img($foto)
+    {
+        return "data:image/".$foto->extension().";base64,".base64_encode(file_get_contents($foto));
     }
 
 }

@@ -1,0 +1,114 @@
+:root{
+    --verde-logo: rgb(43,138,128);
+}
+.agregar-contenedor, .modificar-contenedor, .eliminar-contenedor{
+    display: inline-block;
+    width: 327px;
+    height: 648px;
+    border: 1px solid gray;
+    margin: 20px;
+}
+.modificar-contenedor{
+    height: 703px;
+}
+.eliminar-contenedor{
+    height: 280px;
+}
+.agregar-arriba, .modificar-arriba, .eliminar-arriba{
+    display: inline-block;
+    width: 325px;
+    height: 96px;
+    color: white;
+    background-color: var(--verde-logo);
+    border-bottom: 1px solid gray;
+}
+.agregar-titulo, .modificar-titulo, .eliminar-titulo{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 40px;
+}
+.agregar-titulo > label, .modificar-titulo > label, .eliminar-titulo > label{
+    font-size: 18px;
+    font-weight: 700;
+}
+.agregar-abajo, .modificar-abajo, .eliminar-abajo{
+    display: inline-block;
+    width: 325px;
+    height: 450px;
+}
+.modificar-abajo{
+    width: 605px;
+}
+div.container{
+    margin-top: 20px;
+    display: block;
+}
+.agregar-tipo, .agregar-fabricante, .agregar-modelo, .agregar-estado, .agregar-boton, .modificar-seleccion, .modificar-tipo, .modificar-fabricante, .modificar-modelo, .modificar-estado, .modificar-boton{
+    display: block;
+    width: 180px;
+    margin-bottom: 10px;
+}
+.agregar-boton, .modificar-boton, .eliminar-boton{
+    width: 150px;
+}
+#agregardireccion, #modificardireccion{
+    display: inline-block;
+    background-color: white;
+    border: 0.5px solid black;
+    padding-right: 40px;
+    color: black;
+}
+#agregarcarga, #modificarcarga{
+    position: absolute;
+    display: inline-block;
+    background-color: unset;
+    background-image: url('/img/cargar-verde.png');
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    width: 20px;
+    height: 20px;
+    border: 0;
+    margin-left: -32px;
+    margin-top: 7px;
+    cursor: pointer;
+    z-index: 99;
+}
+#agregarcarga:hover, #modificarcarga:hover{
+    background-image: url('/img/cargar-rojo.png');
+}
+#agregarfoto, #modificarfoto{
+    display: inline-block;
+    overflow: hidden;
+    width: 20px;
+    height: 20px;
+    padding: 0;
+    margin-left: -24px;
+    cursor: pointer;
+    opacity: 0;
+}
+div > label{
+    display: block;
+    font-size: 18px;
+    font-weight: 700;
+}
+div > input, div > select{
+    display: block;
+    padding: 7px;
+    width: 200px;
+}
+div > input[type="submit"]{
+    background-color: var(--verde-logo);
+    width: 287px;
+    height: 60px;
+    font-size: 18px;
+    font-weight: 700;
+    color: white;
+    border: 0;
+    margin-top: 10px;
+}
+div > input[type="submit"]:hover{
+    background-color: var(--light);
+    color: var(--verde-logo);
+    border: 1px solid var(--verde-logo);
+}

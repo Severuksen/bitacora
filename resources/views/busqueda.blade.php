@@ -17,17 +17,16 @@
     </section>
     <section>
         <div class="container">
-            @isset($modelo)
-                @for($i=0;$i<count($modelo);$i++)
-                    <div class="section-gruas" onclick="window.location.assign('{{url('/grua/'.$id_grua[$i])}}');">
+            @isset($gruas)
+                @for($i=0;$i<count($gruas);$i++)
+                    <div class="section-gruas" onclick="window.location.assign('{{url('/grua/'.$gruas[$i]->id_grua)}}');">
                         <div class="gruas-gris">
-                            <div class="gruas-imagen" style="background-image: url('{{asset($img[$i])}}')"></div>
+                            <div class="gruas-imagen" style="background-image: url('<?= $gruas[$i]->img ?>')"></div>
                         </div>
                         <div class="gruas-blanco">
                             <div class="gruas-descripcion">
-                                <label><b>{{$tipo[$i]}} {{$modelo[$i]}}</b></label>
-                                <label>En servicio: {{$horas[$i]}} hrs.</label>
-                                <label>Estado: <b>{{$estado[$i]}}</b></label>
+                                <label><b>{{$gruas[$i]->tipo_grua}} {{$gruas[$i]->mod_grua}}</b></label>
+                                <label>Estado: <b>{{$gruas[$i]->estado}}</b></label>
                             </div>
                         </div>
                     </div>

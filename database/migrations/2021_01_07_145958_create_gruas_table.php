@@ -17,9 +17,8 @@ class CreateGruasTable extends Migration
             $table->id('id_grua');
             $table->string('tipo_grua', 13);
             $table->string('fab_grua', 30);
-            $table->string('mod_grua', 50);
-            $table->integer('horas');
-            $table->string('img', 100);
+            $table->string('mod_grua');
+            $table->longText('img', 100);
             $table->string('estado', 8)->default('ACTIVO');
             $table->timestamps();
         });

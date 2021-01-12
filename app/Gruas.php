@@ -6,6 +6,6 @@ use Illuminate\Database\Eloquent\Model;
 
 class Gruas extends Model
 {
-    protected $table = 'gruas';
-    protected $guard = [];
+    protected $table    = 'gruas';
+    protected $guarded = [];
 }

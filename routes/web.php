@@ -36,5 +36,6 @@ Route::get('grua/{id}', 'GruasController@getgruas');
  * RUTAS DE BUSQUEDA
 */
 Route::get('menu','GruasController@getmenu');
+Route::post('menu','GruasController@postmenu');
 
 
