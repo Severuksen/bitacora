@@ -1,20 +1,29 @@
 :root{
     --verde-logo: rgb(43,138,128);
 }
-.agregar-contenedor, .modificar-contenedor, .eliminar-contenedor{
+header{
+    height: 200px;
+}
+.agregar-grua-contenedor, .modificar-grua-contenedor, .eliminar-grua-contenedor, .agregar-man-contenedor, .modificar-man-contenedor, .eliminar-man-contenedor{
     display: inline-block;
     width: 327px;
     height: 648px;
     border: 1px solid gray;
     margin: 20px;
 }
-.modificar-contenedor{
+.modificar-grua-contenedor{
     height: 732px;
 }
-.eliminar-contenedor{
+.eliminar-grua-contenedor{
     height: 314px;
 }
-.agregar-arriba, .modificar-arriba, .eliminar-arriba{
+.agregar-man-contenedor, .modificar-man-contenedor{
+    height: 740px;
+}
+.eliminar-man-contenedor{
+    height: 384px;
+}
+.agregar-grua-arriba, .modificar-grua-arriba, .eliminar-grua-arriba, .agregar-man-arriba, .modificar-man-arriba, .eliminar-man-arriba{
     display: inline-block;
     width: 325px;
     height: 96px;
@@ -22,44 +31,47 @@
     background-color: var(--verde-logo);
     border-bottom: 1px solid gray;
 }
-.agregar-titulo, .modificar-titulo, .eliminar-titulo{
+.agregar-grua-titulo, .modificar-grua-titulo, .eliminar-grua-titulo, .agregar-man-titulo, .modificar-man-titulo, .eliminar-man-titulo{
     display: flex;
     align-items: center;
     justify-content: center;
     margin-top: 40px;
 }
-.agregar-titulo > label, .modificar-titulo > label, .eliminar-titulo > label{
+.agregar-grua-titulo > label, .modificar-grua-titulo > label, .eliminar-grua-titulo > label, .agregar-man-titulo > label, .modificar-man-titulo > label, .eliminar-man-titulo > label{
     font-size: 18px;
     font-weight: 700;
 }
-.agregar-abajo, .modificar-abajo, .eliminar-abajo{
+.agregar-grua-abajo, .modificar-grua-abajo, .eliminar-grua-abajo, .agregar-man-abajo, .modificar-man-abajo, .eliminar-man-abajo{
     display: inline-block;
     width: 325px;
     height: 450px;
 }
-.modificar-abajo{
+.modificar-grua-abajo{
     width: 605px;
 }
 div.container{
     margin-top: 20px;
     display: block;
 }
-.agregar-tipo, .agregar-fabricante, .agregar-modelo, .agregar-estado, .agregar-boton, .modificar-seleccion, .modificar-tipo, .modificar-fabricante, .modificar-modelo, .modificar-estado, .modificar-boton{
+.agregar-grua-tipo, .agregar-grua-fabricante, .agregar-grua-modelo, .agregar-grua-estado, .agregar-grua-boton, .modificar-grua-seleccion, .modificar-grua-tipo, .modificar-grua-fabricante, .modificar-grua-modelo, .modificar-grua-estado, .modificar-grua-boton, .agregar-man-grua, .agregar-man-mantenimiento, .agregar-man-fecha, .agregar-man-horas, .agregar-man-observaciones, .agregar-man-boton, .modificar-man-grua, .modificar-man-mantenimiento, .modificar-man-fecha, .modificar-man-horas, .modificar-man-observaciones, .modificar-man-boton{
     display: block;
     width: 180px;
     margin-bottom: 10px;
 }
-.agregar-boton, .modificar-boton, .eliminar-boton{
+.agregar-man-mantenimiento, .agregar-man-fecha, .modificar-man-mantenimiento, .modificar-man-fecha{
+    width: 203px;
+}
+.agregar-grua-boton, .modificar-grua-boton, .eliminar-grua-boton{
     width: 150px;
 }
-#agregardireccion, #modificardireccion{
+#agregargruadireccion, #modificargruadireccion{
     display: inline-block;
     background-color: white;
     border: 0.5px solid black;
     padding-right: 40px;
     color: black;
 }
-#agregarcarga, #modificarcarga{
+#agregargruacarga, #modificargruacarga{
     position: absolute;
     display: inline-block;
     background-color: unset;
@@ -74,10 +86,10 @@ div.container{
     cursor: pointer;
     z-index: 99;
 }
-#agregarcarga:hover, #modificarcarga:hover{
+#agregargruacarga:hover, #modificargruacarga:hover{
     background-image: url('/img/cargar-rojo.png');
 }
-#agregarfoto, #modificarfoto{
+#agregargruafoto, #modificargruafoto{
     display: inline-block;
     overflow: hidden;
     width: 20px;

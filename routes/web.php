@@ -17,9 +17,7 @@ use Illuminate\Support\Facades\Route;
 /**
  * RUTA PRINCIPAL
  */
-Route::get('/', function(){
-    return view('index');
-});
+Route::view('/', 'index');
 
 /**
  * RUTAS DE BUSQUEDA

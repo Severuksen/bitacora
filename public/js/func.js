@@ -1,11 +1,11 @@
 $(function(){
-    $('#modificargrua').on('change', function(){
-        let data = $('#modificarform').serialize()+'&seleccionargrua=1';
+    $('#modificargruagrua').on('change', function(){
+        let data = $('#modificargruaform').serialize()+'&seleccionargrua=1';
         $.post({url: '/menu', data, success: function(grua){
-            $('#modificartipo').val(grua[0]);
-            $('#modificarfabricante').val(grua[1]);
-            $('#modificarmodelo').val(grua[2]);
-            $('#modificarestado').val(grua[3]);
+            $('#modificargruatipo').val(grua[0]);
+            $('#modificargruafabricante').val(grua[1]);
+            $('#modificargruamodelo').val(grua[2]);
+            $('#modificargruaestado').val(grua[3]);
         }});
     });
 });
