@@ -2,7 +2,8 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=760, initial-scale=0.4">
+    {{-- <meta name="viewport" content="width=760, initial-scale=0.4"> --}}
+    <meta name="viewport" content="width=default-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <script type="application/ecmascript" src="{{asset('js/jquery-3.5.1.min.js')}}"></script>
     <script type="application/ecmascript" src="{{asset('js/func.js')}}"></script>

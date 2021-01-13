@@ -7,6 +7,7 @@ footer{
     display: block;
     width: 100%;
     height: 100px;
+    margin-bottom: 50px;
 }
 div.block-section, div > label{
     display: block;
@@ -66,4 +67,7 @@ input#busqueda {
 .boton-catalogo-verde:hover{
     color: var(--verde);
     border: 2px solid var(--verde);
+}
+div > input{
+    margin-right: 20px;
 }
