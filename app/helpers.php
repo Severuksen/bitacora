@@ -19,3 +19,20 @@ if (!function_exists('busqueda'))
         return (isset($modelo))? [$id_grua, $modelo, $img, $horas, $tipo, $estado]: NULL;
     }
 }
+
+if (!function_exists('vacio'))
+{
+    /**
+     * Verifica que la coleccion este vacia.
+     */
+    function vacio(array $campos, $request)
+    {
+        foreach($campos as $valor)
+        {
+            if(blank($request[$valor]))
+            {
+                return true;
+            }
+        }
+    }
+}

@@ -34,9 +34,16 @@
             @else
                 <br><br><h2>NO SE ENCONTRARON RESULTADOS.</h2>
             @endisset
+
         </div>
     </section>
     <footer>
-        <br><br><br><br>
+        <div class="container">
+            <div class="centrado">
+                <div class="block-section">
+                    <input type="submit" class="boton-catalogo" value="REGRESAR" onclick="window.location.assign('{{route('index')}}');">
+                </div>
+            </div>
+        </div>
     </footer>
 @endsection

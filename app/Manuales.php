@@ -6,6 +6,6 @@ use Illuminate\Database\Eloquent\Model;
 
 class Manuales extends Model
 {
-    protected $table = 'manuales';
-    protected $guard = [];
+    protected $table   = 'manuales';
+    protected $guarded = [];
 }

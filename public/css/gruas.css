@@ -16,6 +16,7 @@
 table{
     margin-top: 15px;
     font-size: 16px;
+    width: 500px;
 }
 .historial{
     display: block;
@@ -39,6 +40,14 @@ table{
     color: var(--rojo-gonavi);
     border: 2px solid var(--rojo-gonavi);
 }
+.tab button:hover {
+    color: var(--rojo-gonavi);
+    border-bottom: 2px solid var(--rojo-gonavi);
+}
+.tab button.activo {
+    color: var(--rojo-gonavi);
+    border-bottom: 2px solid var(--rojo-gonavi);
+}
 .col-xs-6{
-    margin: 5px;
+    margin: 5px 15px 5px 5px;
 }

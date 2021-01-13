@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\View\View;
 use App\Gruas;
 use App\Servicios;
+use App\Mantenimiento;
 use Illuminate\Database\QueryException;
 
 class GruasController extends Controller
@@ -51,12 +52,11 @@ class GruasController extends Controller
     /**
      * Funcion de recepcion de las peticiones $_GET de las gruas por su id. Devuelve la informacion de la grua solicitada por su id_grua.
      */
-    public function getgruas($id_grua)
+    public function getgrua($id_grua)
     {
-        $servicios = Servicios::select(['gruas.id_grua', 'gruas.tipo_grua', 'gruas.mod_grua', 'servicios.horas', 'servicios.fecha', 'mantenimiento.tipo_man', 'gruas.img', 'servicios.observaciones', 'gruas.estado', 'manuales.descripcion', 'manuales.manual'])
+        $servicios = Servicios::select(['gruas.id_grua', 'gruas.tipo_grua', 'gruas.mod_grua', 'servicios.horas', 'servicios.fecha', 'mantenimiento.tipo_man', 'gruas.img', 'servicios.observaciones', 'gruas.estado'])
                     ->join('gruas', 'gruas.id_grua', '=', 'servicios.id_grua')
                     ->join('mantenimiento', 'mantenimiento.id_man', '=', 'servicios.id_man')
-                    ->join('manuales', 'manuales.id_grua', '=', 'gruas.id_grua')
                     ->where('servicios.id_grua', e($id_grua))->orderBy('servicios.fecha', 'DESC')->first();
 
         $historial = Servicios::select(['servicios.fecha', 'servicios.horas', 'mantenimiento.tipo_man', 'servicios.observaciones', 'servicios.estado'])
@@ -76,39 +76,31 @@ class GruasController extends Controller
         }
     }
 
-    /**
-     *
-     */
+    public function consultasprevias()
+    {
+        $gruas = Gruas::select(['id_grua', 'mod_grua']);
+        return $gruas;
+    }
+
     public function getmenu()
     {
-        $gruas = Gruas::select(['id_grua', 'mod_grua'])->get();
-        return view('menu', ['gruas' => $gruas]);
+        return $this->vista('', '');
     }
 
     public function postmenu(Request $request)
     {
-
         switch(true){
             case (isset($request->agregargrua)):
                 return $this->agregargrua($request);
                 break;
             case (isset($request->seleccionargrua)):
-                return $this->seleccionargrua($request);
+                return $this->seleccionargrua($request->modificargruagrua);
                 break;
             case (isset($request->modificargrua)):
                 return $this->modificargrua($request);
                 break;
             case (isset($request->eliminargrua)):
                 return $this->eliminargrua($request);
-                break;
-            case (isset($request->agregarman)):
-                return $this->agregarman($request);
-                break;
-            case (isset($request->modificarman)):
-                return $this->modificarman($request);
-                break;
-            case (isset($request->eliminarman)):
-                return $this->eliminarman($request);
                 break;
         }
     }
@@ -118,25 +110,14 @@ class GruasController extends Controller
         return "data:image/".$foto->extension().";base64,".base64_encode(file_get_contents($foto));
     }
 
-    public function vacio(array $campos, $request)
-    {
-        foreach($campos as $valor)
-        {
-            if(blank($request[$valor]))
-            {
-                return true;
-            }
-        }
-    }
-
     public function agregargrua($request)
     {
-        $gruas  = Gruas::select(['id_grua', 'mod_grua']);
+        $gruas = $this->consultasprevias();
         $campos = ['agregargruatipo', 'agregargruafabricante', 'agregargruamodelo', 'agregargruaestado', 'agregargruafoto'];
 
-        if($this->vacio($campos, $request)){
-            $gruas = $gruas->get();
-            return view('menu', ['agregargruamensaje' => 'NO DEBES DEJAR CAMPOS VACIOS.', 'gruas' => $gruas]);
+        if(vacio($campos, $request))
+        {
+            return view('menu.gruas', ['agregargruamensaje' => 'NO DEBES DEJAR CAMPOS VACIOS.', 'gruas' => $gruas->get()]);
         } else {
             switch ($request->file('agregargruafoto')->extension()) {
                 case 'jpg':
@@ -145,87 +126,58 @@ class GruasController extends Controller
                     break;
 
                 default:
-                    return view('menu', ['agregargruamensaje' => 'EL FORMATO DE LA IMAGEN NO ES COMPATIBLE', 'gruas' => $gruas]);
+                    return view('menu.gruas', ['agregargruamensaje' => 'EL FORMATO DE LA IMAGEN NO ES COMPATIBLE', 'gruas' => $gruas]);
                     break;
             }
-            Gruas::create([
-                'tipo_grua' => e($request->agregargruatipo),
-                'fab_grua' => e($request->agregargruafabricante),
-                'mod_grua' => e($request->agregargruamodelo),
-                'estado' => e($request->agregargruaestado),
-                'img' => $img
-            ]);
-            $gruas = $gruas->get();
-            return view('menu', ['agregargruamensaje' => 'SE HA AGREGADO LA GRÚA.', 'gruas' => $gruas]);
+            Gruas::create(['tipo_grua' => e($request->agregargruatipo), 'fab_grua' => e($request->agregargruafabricante), 'mod_grua' => e($request->agregargruamodelo), 'estado' => e($request->agregargruaestado), 'img' => $img]);
+            return view('menu.gruas', ['agregargruamensaje' => 'SE HA AGREGADO LA GRÚA.', 'gruas' => $gruas->get()]);
         }
     }
 
-    public function seleccionargrua($request)
+    public function seleccionargrua($id)
     {
-        $grua = Gruas::select(['tipo_grua', 'fab_grua', 'mod_grua', 'estado'])->whereId_grua($request->modificargruagrua)->first();
+        $grua = Gruas::select(['tipo_grua', 'fab_grua', 'mod_grua', 'estado'])->whereId_grua($id)->first();
         return [$grua->tipo_grua, $grua->fab_grua, $grua->mod_grua, $grua->estado];
     }
 
     public function modificargrua($request)
     {
-        $gruas  = Gruas::select(['id_grua', 'mod_grua']);
         $campos = ['modificargruatipo', 'modificargruafabricante', 'modificargruamodelo', 'modificargruaestado'];
 
-        switch($this->vacio($campos, $request))
+        switch(vacio($campos, $request))
         {
             case true:
-                $gruas = $gruas->get();
-                return view('menu', ['modificargruamensaje' => 'NO DEBES DEJAR CAMPOS VACIOS.', 'gruas' => $gruas]);
+                return $this->vista('modificargruamensaje', 'NO DEBES DEJAR CAMPOS VACIOS.');
                 break;
             case false:
-                if($this->vacio(['modificargruafoto'], $request))
+                if(vacio(['modificargruafoto'], $request))
                 {
                     $datos = ['tipo_grua' => $request->modificargruatipo, 'fab_grua' => $request->modificargruafabricante, 'mod_grua' => $request->modificargruamodelo, 'estado' => $request->modificargruaestado];
                 } else {
                     $datos = ['tipo_grua' => $request->modificargruatipo, 'fab_grua' => $request->modificargruafabricante, 'mod_grua' => $request->modificargruamodelo, 'estado' => $request->modificargruaestado, 'img' => $this->img($request->file('modificargruafoto'))];
                 }
                 Gruas::whereId_grua($request->modificargruagrua)->update($datos);
-                $gruas = $gruas->get();
-                return view('menu', ['modificargruamensaje' => 'SE HA MODIFICADO CON ÉXITO.', 'gruas' => $gruas]);
+                return $this->vista('modificargruamensaje', 'SE HA MODIFICADO CON ÉXITO.');
                 break;
         }
     }
 
     public function eliminargrua($request)
     {
-        $gruas = Gruas::select(['id_grua', 'mod_grua']);
         try{
             Gruas::whereId_grua($request->eliminargruagrua)->delete();
-            $gruas = $gruas->get();
-            return view('menu', ['eliminargruamensaje' => 'SE HA ELIMINADO CON ÉXITO.', 'gruas' => $gruas]);
+            return $this->vista('eliminargruamensaje', 'SE HA ELIMINADO CON ÉXITO.');
         } catch (QueryException $e){
-            $gruas = $gruas->get();
-            return view('menu', ['eliminargruamensaje' => $e, 'gruas' => $gruas]);
+            return $this->vista('eliminargruamensaje', $e);
         }
     }
 
-    public function agregarman($request)
+    public function vista($campo, $mensaje)
     {
-        $gruas  = Gruas::select(['id_grua', 'mod_grua']);
-        $campos = ['agregarmanmantenimiento', 'agregarmanfecha', 'agregarmanhoras', 'agregarmanobservaciones', 'agregarmanestado'];
-
-        if($this->vacio($campos, $request)){
-            $gruas = $gruas->get();
-            return view('menu', ['agregarmanmensaje' => 'NO DEBES DEJAR CAMPOS VACIOS.', 'gruas' => $gruas]);
-        } else {
-            /* Servicios::create([
-                'fecha' => e(),
-                'id_grua' => e(),
-                'id_man' => e(),
-                'horas' => e(),
-                'observaciones' => e(),
-                'estado' => e()
-            ]);
-            $gruas = $gruas->get();
-            return view('menu', ['agregargruamensaje' => 'SE HA AGREGADO LA GRÚA.', 'gruas' => $gruas]); */
-        }
-
-        return dd($request);
+        $gruas = $this->consultasprevias();
+        return view('menu.gruas', [
+            $campo => $mensaje,
+            'gruas' => $gruas->get(),
+        ]);
     }
-
 }

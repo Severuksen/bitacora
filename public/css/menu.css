@@ -21,7 +21,7 @@ header{
     height: 740px;
 }
 .eliminar-man-contenedor{
-    height: 384px;
+    height: 321px;
 }
 .agregar-grua-arriba, .modificar-grua-arriba, .eliminar-grua-arriba, .agregar-man-arriba, .modificar-man-arriba, .eliminar-man-arriba{
     display: inline-block;
@@ -60,6 +60,9 @@ div.container{
 }
 .agregar-man-mantenimiento, .agregar-man-fecha, .modificar-man-mantenimiento, .modificar-man-fecha{
     width: 203px;
+}
+.agregar-man-fecha, .modificar-man-fecha{
+    width: 213px;
 }
 .agregar-grua-boton, .modificar-grua-boton, .eliminar-grua-boton{
     width: 150px;

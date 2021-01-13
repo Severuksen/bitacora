@@ -1,6 +1,5 @@
 <?php
 
-use App\Http\Controllers\GruasController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -17,7 +16,7 @@ use Illuminate\Support\Facades\Route;
 /**
  * RUTA PRINCIPAL
  */
-Route::view('/', 'index');
+Route::view('/', 'index')->name('index');
 
 /**
  * RUTAS DE BUSQUEDA
@@ -28,12 +27,20 @@ Route::post('busqueda', 'GruasController@postbusqueda');
 /**
  * RUTAS DE GRUAS
  */
-Route::get('grua/{id}', 'GruasController@getgruas');
+Route::get('grua/{id}', 'GruasController@getgrua');
 
 /**
- * RUTAS DE BUSQUEDA
+ * RUTAS DE MENU
 */
-Route::get('menu','GruasController@getmenu');
-Route::post('menu','GruasController@postmenu');
-
+Route::redirect('menu','menu/gruas');
+Route::prefix('menu')->group(function(){
+    Route::get('gruas', 'GruasController@getmenu');
+    Route::post('gruas', 'GruasController@postmenu');
+    Route::get('mantenimiento', 'MantenimientoController@getmenu');
+    Route::post('mantenimiento', 'MantenimientoController@postmenu');
+    Route::get('datos', 'ManualesController@getmenu');
+    Route::post('datos', 'ManualesController@postmenu');
+    Route::get('manuales', 'ManualesController@getmenu');
+    Route::post('manuales', 'ManualesController@postmenu');
+});
 

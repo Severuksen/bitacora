@@ -97,16 +97,37 @@ div.header-menu-opciones > ul > li > a {
 .tab button:hover {
     background-color: unset;
     font-weight: 700;
-    color: var(--verde-logo);
-    border-bottom: 2px solid var(--verde-logo);
+    color: var(--verde);
+    border-bottom: 2px solid var(--verde);
 }
 
 .tab button.activo {
-    color: var(--verde-logo);
+    color: var(--verde);
     font-weight: 700;
-    border-bottom: 2px solid var(--verde-logo);
+    border-bottom: 2px solid var(--verde);
 }
 .container > label{
-    font-size: 30px;
+    font-size: 25px;
     font-weight: 700;
+}
+footer{
+    margin: 50px 0 50px 0;
+}
+.boton-catalogo, .boton-catalogo-verde{
+    width: 330px;
+    height: 89px;
+    color: white;
+    background-color: var(--rojo-gonavi);
+    border: 0;
+    font-size: 20px;
+    font-weight: 700;
+}
+.boton-catalogo:hover, .boton-catalogo-verde:hover{
+    color: var(--rojo-gonavi);
+    border: 2px solid var(--rojo-gonavi);
+    background-color: white;
+}
+.boton-catalogo-verde:hover{
+    color: var(--verde);
+    border: 2px solid var(--verde);
 }

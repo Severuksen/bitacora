@@ -28,34 +28,39 @@
                         </div>
                         <div id="mantenimiento" class="contenido" style="display: flex;">
                             @if(isset($servicios) && !isset($mensaje))
-                                <table>
-                                    <thead>
-                                        <tr>
-                                            <th width="200px"><b>Fecha del último servicio: </b></th>
-                                            <th width="200px">@isset($servicios->fecha){{$servicios->fecha}}@endisset</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                            <td><b>Horas de uso: </b></td>
-                                            <td>@isset($servicios->horas){{$servicios->horas}}@endisset hrs.</td>
-                                        </tr>
-                                        <tr>
-                                            <td><b>Mantenimiento realizado: </b></td>
-                                            <td>@isset($servicios->tipo_man){{$servicios->tipo_man}}@endisset</td>
-                                        </tr>
-                                        <tr>
-                                            <td><b>Observaciones: </b></td>
-                                            <td>@isset($servicios->observaciones){{$servicios->observaciones}}@endisset</td>
-                                        </tr>
-                                        <tr>
-                                            <td><b>Estado: </b></td>
-                                            <td>@isset($servicios->estado){{$servicios->estado}}@endisset</td>
-                                        </tr>
-                                    </tbody>
-                                </table>
+                                <div class="container">
+                                    <table>
+                                        <thead>
+                                            <tr>
+                                                <th width="200px"><b>Fecha del último servicio: </b></th>
+                                                <th width="300px">@isset($servicios->fecha){{$servicios->fecha}}@endisset</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td><b>Horas de uso: </b></td>
+                                                <td>@isset($servicios->horas){{$servicios->horas}}@endisset hrs.</td>
+                                            </tr>
+                                            <tr>
+                                                <td><b>Mantenimiento realizado: </b></td>
+                                                <td>@isset($servicios->tipo_man){{$servicios->tipo_man}}@endisset</td>
+                                            </tr>
+                                            <tr>
+                                                <td><b>Estado: </b></td>
+                                                <td>@isset($servicios->estado){{$servicios->estado}}@endisset</td>
+                                            </tr>
+                                            <tr>
+                                                <td><b>Observaciones: </b></td>
+                                                <td>@isset($servicios->observaciones){{$servicios->observaciones}}@endisset</td>
+                                            </tr>
+
+                                        </tbody>
+                                    </table>
+                                </div>
                             @elseif(isset($servicios) && isset($mensaje))
-                                <label>{{$mensaje}}</label>
+                                <div class="container">
+                                    <label>{{$mensaje}}</label>
+                                </div>
                             @endif
                         </div>
                         <div id="historial" class="contenido" style="display: none;">
@@ -81,12 +86,12 @@
                                                         <td id='mantenimiento'>@isset($grua->tipo_man){{$grua->tipo_man}}@endisset</td>
                                                     </tr>
                                                     <tr>
-                                                        <td><b>Observaciones: </b></td>
-                                                        <td id='observaciones'>@isset($grua->observaciones){{$grua->observaciones}}@endisset</td>
-                                                    </tr>
-                                                    <tr>
                                                         <td><b>Estado: </b></td>
                                                         <td id='estado'>@isset($grua->estado){{$grua->estado}}@endisset</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td><b>Observaciones: </b></td>
+                                                        <td id='observaciones'>@isset($grua->observaciones){{$grua->observaciones}}@endisset</td>
                                                     </tr>
                                                 </tbody>
                                             </table>
@@ -104,4 +109,13 @@
             </div>
         </div>
     </section>
+    <footer>
+        <div class="container">
+            <div class="centrado">
+                <div class="block-section">
+                    <input type="submit" class="boton-catalogo" value="REGRESAR" onclick="window.location.assign('{{url('busqueda')}}');">
+                </div>
+            </div>
+        </div>
+    </footer>
 @endsection

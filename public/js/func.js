@@ -1,11 +1,22 @@
 $(function(){
     $('#modificargruagrua').on('change', function(){
         let data = $('#modificargruaform').serialize()+'&seleccionargrua=1';
-        $.post({url: '/menu', data, success: function(grua){
+        $.post({url: '/menu/gruas', data, success: function(grua){
             $('#modificargruatipo').val(grua[0]);
             $('#modificargruafabricante').val(grua[1]);
             $('#modificargruamodelo').val(grua[2]);
             $('#modificargruaestado').val(grua[3]);
+        }});
+    });
+
+    $('#modificarmangrua').on('change', function(){
+        let data = $('#modificarmanform').serialize()+'&seleccionargrua=1';
+        $.post({url: '/menu/mantenimiento', data, success: function(grua){
+            $('#modificarmanmantenimiento').val(grua[0]);
+            $('#modificarmanfecha').val(grua[1]);
+            $('#modificarmanhoras').val(grua[2]);
+            $('#modificarmanobservaciones').val(grua[3]);
+            $('#modificarmanestado').val(grua[4]);
         }});
     });
 });
