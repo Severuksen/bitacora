@@ -112,27 +112,34 @@ class GruasController extends Controller
         return "data:image/".$foto->extension().";base64,".base64_encode(file_get_contents($foto));
     }
 
-    public function agregargrua($request)
+    public function vista($campo, $mensaje)
     {
         $gruas = $this->consultasprevias();
+        return view('menu.gruas', [
+            $campo => $mensaje,
+            'gruas' => $gruas->get(),
+        ]);
+    }
+
+    public function agregargrua($request)
+    {
         $campos = ['agregargruatipo', 'agregargruafabricante', 'agregargruamodelo', 'agregargruaestado', 'agregargruafoto'];
 
         if(vacio($campos, $request))
         {
-            return view('menu.gruas', ['agregargruamensaje' => 'NO DEBES DEJAR CAMPOS VACIOS.', 'gruas' => $gruas->get()]);
+            return $this->vista('agregargruamensaje', 'NO DEBES DEJAR CAMPOS VACIOS.');
         } else {
             switch ($request->file('agregargruafoto')->extension()) {
                 case 'jpg':
                 case 'png':
                     $img = $this->img($request->file('agregargruafoto'));
                     break;
-
                 default:
-                    return view('menu.gruas', ['agregargruamensaje' => 'EL FORMATO DE LA IMAGEN NO ES COMPATIBLE', 'gruas' => $gruas]);
+                    return $this->vista('agregargruamensaje', 'EL FORMATO DE LA IMAGEN NO ES COMPATIBLE.');
                     break;
             }
             Gruas::create(['tipo_grua' => e($request->agregargruatipo), 'fab_grua' => e($request->agregargruafabricante), 'mod_grua' => e($request->agregargruamodelo), 'estado' => e($request->agregargruaestado), 'img' => $img]);
-            return view('menu.gruas', ['agregargruamensaje' => 'SE HA AGREGADO LA GRÚA.', 'gruas' => $gruas->get()]);
+            return $this->vista('agregargruamensaje', 'SE HA AGREGADO LA GRÚA.');
         }
     }
 
@@ -172,14 +179,5 @@ class GruasController extends Controller
         } catch (QueryException $e){
             return $this->vista('eliminargruamensaje', $e);
         }
-    }
-
-    public function vista($campo, $mensaje)
-    {
-        $gruas = $this->consultasprevias();
-        return view('menu.gruas', [
-            $campo => $mensaje,
-            'gruas' => $gruas->get(),
-        ]);
     }
 }

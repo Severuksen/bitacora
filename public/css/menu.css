@@ -4,7 +4,7 @@
 header{
     height: 200px;
 }
-.agregar-grua-contenedor, .modificar-grua-contenedor, .eliminar-grua-contenedor, .agregar-man-contenedor, .modificar-man-contenedor, .eliminar-man-contenedor{
+.agregar-grua-contenedor, .modificar-grua-contenedor, .eliminar-grua-contenedor, .agregar-man-contenedor, .modificar-man-contenedor, .eliminar-man-contenedor, .agregar-manu-contenedor, .modificar-manu-contenedor, .eliminar-manu-contenedor{
     display: inline-block;
     width: 327px;
     height: 648px;
@@ -23,7 +23,16 @@ header{
 .eliminar-man-contenedor{
     height: 321px;
 }
-.agregar-grua-arriba, .modificar-grua-arriba, .eliminar-grua-arriba, .agregar-man-arriba, .modificar-man-arriba, .eliminar-man-arriba{
+.agregar-manu-contenedor{
+    height: 700px;
+}
+.modificar-manu-contenedor{
+    height: 790px;
+}
+.eliminar-manu-contenedor{
+    height: 317px;
+}
+.agregar-grua-arriba, .modificar-grua-arriba, .eliminar-grua-arriba, .agregar-man-arriba, .modificar-man-arriba, .eliminar-man-arriba, .agregar-manu-arriba, .modificar-manu-arriba, .eliminar-manu-arriba{
     display: inline-block;
     width: 325px;
     height: 96px;
@@ -31,17 +40,17 @@ header{
     background-color: var(--verde-logo);
     border-bottom: 1px solid gray;
 }
-.agregar-grua-titulo, .modificar-grua-titulo, .eliminar-grua-titulo, .agregar-man-titulo, .modificar-man-titulo, .eliminar-man-titulo{
+.agregar-grua-titulo, .modificar-grua-titulo, .eliminar-grua-titulo, .agregar-man-titulo, .modificar-man-titulo, .eliminar-man-titulo, .agregar-manu-titulo, .modificar-manu-titulo, .eliminar-manu-titulo{
     display: flex;
     align-items: center;
     justify-content: center;
     margin-top: 35px;
 }
-.agregar-grua-titulo > label, .modificar-grua-titulo > label, .eliminar-grua-titulo > label, .agregar-man-titulo > label, .modificar-man-titulo > label, .eliminar-man-titulo > label{
+.agregar-grua-titulo > label, .modificar-grua-titulo > label, .eliminar-grua-titulo > label, .agregar-man-titulo > label, .modificar-man-titulo > label, .eliminar-man-titulo > label,  .agregar-manu-titulo > label, .modificar-manu-titulo > label, .eliminar-manu-titulo > label{
     font-size: 18px;
     font-weight: 700;
 }
-.agregar-grua-abajo, .modificar-grua-abajo, .eliminar-grua-abajo, .agregar-man-abajo, .modificar-man-abajo, .eliminar-man-abajo{
+.agregar-grua-abajo, .modificar-grua-abajo, .eliminar-grua-abajo, .agregar-man-abajo, .modificar-man-abajo, .eliminar-man-abajo, .agregar-manu-abajo, .modificar-manu-abajo, .eliminar-manu-abajo{
     display: inline-block;
     width: 325px;
     height: 450px;
@@ -53,7 +62,7 @@ div.container{
     margin-top: 20px;
     display: block;
 }
-.agregar-grua-tipo, .agregar-grua-fabricante, .agregar-grua-modelo, .agregar-grua-estado, .agregar-grua-boton, .modificar-grua-seleccion, .modificar-grua-tipo, .modificar-grua-fabricante, .modificar-grua-modelo, .modificar-grua-estado, .modificar-grua-boton, .agregar-man-grua, .agregar-man-mantenimiento, .agregar-man-fecha, .agregar-man-horas, .agregar-man-observaciones, .agregar-man-boton, .modificar-man-grua, .modificar-man-mantenimiento, .modificar-man-fecha, .modificar-man-horas, .modificar-man-observaciones, .modificar-man-boton{
+.agregar-grua-tipo, .agregar-grua-fabricante, .agregar-grua-modelo, .agregar-grua-estado, .agregar-grua-boton, .modificar-grua-seleccion, .modificar-grua-tipo, .modificar-grua-fabricante, .modificar-grua-modelo, .modificar-grua-estado, .modificar-grua-boton, .agregar-man-grua, .agregar-man-mantenimiento, .agregar-man-fecha, .agregar-man-horas, .agregar-man-observaciones, .agregar-man-boton, .modificar-man-grua, .modificar-man-mantenimiento, .modificar-man-fecha, .modificar-man-horas, .modificar-man-observaciones, .modificar-man-boton, .agregar-manu-grua, .agregar-manu-nombre, .agregar-manu-descripcion, .agregar-manu-enlace, .agregar-manu-boton, .modificar-manu-grua, .modificar-manu-manual, .modificar-manu-nombre, .modificar-manu-descripcion, .modificar-manu-enlace, .modificar-manu-boton, .eliminar-manu-manual, .eliminar-manu-boton{
     display: block;
     width: 180px;
     margin-bottom: 10px;
@@ -67,14 +76,14 @@ div.container{
 .agregar-grua-boton, .modificar-grua-boton, .eliminar-grua-boton{
     width: 150px;
 }
-#agregargruadireccion, #modificargruadireccion{
+#agregargruadireccion, #modificargruadireccion, #agregarmanudireccion, #modificarmanudireccion{
     display: inline-block;
     background-color: white;
     border: 0.5px solid black;
     padding-right: 40px;
     color: black;
 }
-#agregargruacarga, #modificargruacarga{
+#agregargruacarga, #modificargruacarga, #agregarmanucarga, #modificarmanucarga{
     position: absolute;
     display: inline-block;
     background-color: unset;
@@ -89,10 +98,10 @@ div.container{
     cursor: pointer;
     z-index: 99;
 }
-#agregargruacarga:hover, #modificargruacarga:hover{
+#agregargruacarga:hover, #modificargruacarga:hover, #agregarmanucarga:hover, #modificarmanucarga:hover{
     background-image: url('/img/cargar-rojo.png');
 }
-#agregargruafoto, #modificargruafoto{
+#agregargruafoto, #modificargruafoto, #agregarmanupdf, #modificarmanupdf{
     display: inline-block;
     overflow: hidden;
     width: 20px;
@@ -102,8 +111,11 @@ div.container{
     cursor: pointer;
     opacity: 0;
 }
-.manual-arriba{
-    background-color: var(--verde-logo);
+textarea#agregarmanudescripcion, textarea#modificarmanudescripcion{
+    margin: 0px;
+    height: 169px;
+    width: 198px;
+    resize: unset;
 }
 div > label{
     display: block;

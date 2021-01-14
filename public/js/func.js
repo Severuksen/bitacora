@@ -19,6 +19,15 @@ $(function(){
             $('#modificarmanestado').val(grua[4]);
         }});
     });
+
+    $('#modificarmanumanual').on('change', function(){
+        let data = $('#modificarmanuform').serialize()+'&seleccionarmanu=1';
+        $.post({url: '/menu/manuales', data, success: function(grua){
+            $('#modificarmanugrua').val(grua[0]);
+            $('#modificarmanunombre').val(grua[1]);
+            $('#modificarmanudescripcion').html(grua[2]);
+        }});
+    });
 });
 
 function abrir(evento, tabla) {
@@ -46,9 +55,7 @@ function historial(evento) {
 
 function direccion(event, id)
 {
-    let direccion = event.currentTarget.value;
-    direccion.substr(0, 12) == "C:\\fakepath\\";
-    document.getElementById(id).value = direccion.substr(12);
+    $("#"+id).val(event.currentTarget.value.substr(12));
 }
 
 function cargar(id)
