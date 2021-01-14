@@ -16,8 +16,8 @@ class CreateManualesTable extends Migration
         Schema::create('manuales', function (Blueprint $table) {
             $table->id('id_man');
             $table->bigInteger('id_grua')->unsigned();
-            $table->string('descripcion', 100)->nullable();
-            $table->string('manual', 500)->nullable();
+            $table->string('nombre', 47);
+            $table->string('descripcion', 222);
             $table->foreign('id_grua')
                 ->references('id_grua')
                 ->on('gruas')

@@ -40,6 +40,12 @@ table{
     color: var(--rojo-gonavi);
     border: 2px solid var(--rojo-gonavi);
 }
+.manual{
+    width: 537px;
+    height: 355px;
+    overflow-y: scroll;
+    overflow-x: unset;
+}
 .tab button:hover {
     color: var(--rojo-gonavi);
     border-bottom: 2px solid var(--rojo-gonavi);
@@ -50,4 +56,9 @@ table{
 }
 .col-xs-6{
     margin: 5px 15px 5px 5px;
+}
+div > label{
+    display: block;
+    font-size: 18px;
+    font-weight: 700;
 }

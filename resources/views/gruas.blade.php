@@ -103,6 +103,25 @@
                         <div id="datos" class="contenido" style="display: none;">
                         </div>
                         <div id="manuales" class="contenido" style="display: none;">
+                            <div class="container manual">
+                                @isset($manuales)
+                                    @foreach ($manuales as $manual)
+                                        <div class="manual-contenedor">
+                                            <div class="manual-arriba">
+                                                <div class="manual-titulo">
+                                                    <label>{{$manual->nombre}}</label>
+                                                </div>
+                                            </div>
+                                            <div class="manual-abajo">
+                                                <div class="manual-descripcion">
+                                                    <p>{{$manual->descripcion}}</p>
+                                                </div>
+                                                <a class="manual-icono" href="{{url($manual->enlace)}}" target="_blank"></a>
+                                            </div>
+                                        </div>
+                                    @endforeach
+                                @endisset
+                            </div>
                         </div>
                     </div>
                 </div>

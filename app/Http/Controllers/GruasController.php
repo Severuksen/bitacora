@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\View\View;
 use App\Gruas;
 use App\Servicios;
-use App\Mantenimiento;
+use App\Manuales;
 use Illuminate\Database\QueryException;
 
 class GruasController extends Controller
@@ -52,7 +52,7 @@ class GruasController extends Controller
     /**
      * Funcion de recepcion de las peticiones $_GET de las gruas por su id. Devuelve la informacion de la grua solicitada por su id_grua.
      */
-    public function getgrua($id_grua)
+    public function getgrua(int $id_grua): View
     {
         $servicios = Servicios::select(['gruas.id_grua', 'gruas.tipo_grua', 'gruas.mod_grua', 'servicios.horas', 'servicios.fecha', 'mantenimiento.tipo_man', 'gruas.img', 'servicios.observaciones', 'gruas.estado'])
                     ->join('gruas', 'gruas.id_grua', '=', 'servicios.id_grua')
@@ -64,6 +64,8 @@ class GruasController extends Controller
                     ->join('mantenimiento', 'mantenimiento.id_man', '=', 'servicios.id_man')
                     ->where('servicios.id_grua', e($id_grua))->orderBy('servicios.fecha', 'DESC')->get();
 
+        $manuales  = Manuales::select(['nombre','descripcion', 'enlace'])->whereId_grua($id_grua)->get();
+
         switch(true)
         {
             case ($servicios == NULL):
@@ -71,7 +73,7 @@ class GruasController extends Controller
                 return view('gruas', ['servicios' => $gruas, 'mensaje' => 'No posee ningun mantenimiento registrado.']);
             break;
             default:
-                return view('gruas', ['servicios' => $servicios, 'historial' => $historial]);
+                return view('gruas', ['servicios' => $servicios, 'historial' => $historial, 'manuales' => $manuales]);
             break;
         }
     }

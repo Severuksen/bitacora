@@ -35,7 +35,7 @@ header{
     display: flex;
     align-items: center;
     justify-content: center;
-    margin-top: 40px;
+    margin-top: 35px;
 }
 .agregar-grua-titulo > label, .modificar-grua-titulo > label, .eliminar-grua-titulo > label, .agregar-man-titulo > label, .modificar-man-titulo > label, .eliminar-man-titulo > label{
     font-size: 18px;
@@ -101,6 +101,9 @@ div.container{
     margin-left: -24px;
     cursor: pointer;
     opacity: 0;
+}
+.manual-arriba{
+    background-color: var(--verde-logo);
 }
 div > label{
     display: block;

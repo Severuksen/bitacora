@@ -2,8 +2,8 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    {{-- <meta name="viewport" content="width=760, initial-scale=0.4"> --}}
-    <meta name="viewport" content="width=default-width, initial-scale=1.0">
+    <meta name="viewport" content="width=760, initial-scale=0.4">
+    {{-- <meta name="viewport" content="width=device-width, initial-scale=1.0"> --}}
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <script type="application/ecmascript" src="{{asset('js/jquery-3.5.1.min.js')}}"></script>
     <script type="application/ecmascript" src="{{asset('js/func.js')}}"></script>
@@ -22,19 +22,10 @@
                 <img src="{{asset('img/bitacora.png')}}" width="250px" height="69px" alt="Logo de Bitátoca">
             </div>
         </div>
-        {{-- <div class="header-menu">
-            <a class="header-menu-boton" href="#"></a>
-            <div class="header-menu-opciones">
-                <ul>
-                    <li><a href="">INICIO</a></li>
-                    <li><a href="">GRÚAS</a></li>
-                    <li><a href="">MANTENIMIENTO</a></li>
-                </ul>
-            </div>
-        </div> --}}
     </header>
     @yield('cuerpo')
 </body>
 </html>
+
 
 
