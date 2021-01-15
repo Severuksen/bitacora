@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Gruas;
 use App\Manuales;
+use Illuminate\Database\QueryException;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
@@ -44,12 +45,13 @@ class ManualesController extends Controller
                 return "/storage/".$nombre;
                 break;
             case 'modificar':
-                $archivo = file_get_contents($request->file('modificarmanupdf'));
-                $nombre  = $request->modificarmanugrua."-".$request->modificarmanunombre.".pdf";
+                $baul     = Storage::disk('public');
+                $archivo  = file_get_contents($request->file('modificarmanupdf'));
+                $nombre   = $request->modificarmanugrua."-".$request->modificarmanunombre.".pdf";
+                $manuales = Manuales::select(['enlace'])->whereId_man($request->modificarmanumanual)->first();
 
-                $manuales = Manuales::select(['gruas.id_grua', 'manuales.nombre'])->join('gruas', 'gruas.id_grua', '=', 'manuales.id_grua')->whereId_man($request->modificarmanumanual)->first();
-                Storage::disk('public')->delete($manuales->id_grua."-".$request->modificarmanunombre.".pdf");
-                Storage::disk('public')->put($nombre, $archivo);
+                $baul->delete(substr($manuales->enlace, 8));
+                $baul->put($nombre, $archivo);
                 return "/storage/".$nombre;
                 break;
         }
@@ -125,6 +127,16 @@ class ManualesController extends Controller
                 Manuales::whereId_man($request->modificarmanumanual)->update($datos);
                 return $this->vista('modificarmanumensaje', 'SE HA MODIFICADO CON ÉXITO.');
                 break;
+        }
+    }
+
+    public function eliminarmanu($request)
+    {
+        try{
+            Manuales::whereId_man($request->eliminarmanumanual)->delete();
+            return $this->vista('eliminarmanumensaje', 'SE HA ELIMINADO CON ÉXITO.');
+        } catch (QueryException $e){
+            return $this->vista('eliminarmanumensaje', $e);
         }
     }
 }

@@ -127,7 +127,7 @@
                                     <select id="eliminarmanunombre" name="eliminarmanunombre">
                                         @isset($manuales)
                                             @foreach ($manuales as $manual)
-                                                <option value="{{$manual->id_man}}">{{$manual->nombre}}</option>
+                                                <option value="{{$manual->id_man}}">{{$manual->mod_grua." - ".$manual->nombre}}</option>
                                             @endforeach
                                         @endisset
                                     </select>

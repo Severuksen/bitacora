@@ -18,6 +18,7 @@ class CreateManualesTable extends Migration
             $table->bigInteger('id_grua')->unsigned();
             $table->string('nombre', 47);
             $table->string('descripcion', 222);
+            $table->string('enlace', 100);
             $table->foreign('id_grua')
                 ->references('id_grua')
                 ->on('gruas')

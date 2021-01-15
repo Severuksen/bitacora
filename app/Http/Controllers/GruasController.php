@@ -78,12 +78,6 @@ class GruasController extends Controller
         }
     }
 
-    public function consultasprevias()
-    {
-        $gruas = Gruas::select(['id_grua', 'mod_grua']);
-        return $gruas;
-    }
-
     public function getmenu()
     {
         return $this->vista('', '');
@@ -114,10 +108,10 @@ class GruasController extends Controller
 
     public function vista($campo, $mensaje)
     {
-        $gruas = $this->consultasprevias();
+        $gruas = Gruas::select(['id_grua', 'mod_grua'])->get();
         return view('menu.gruas', [
             $campo => $mensaje,
-            'gruas' => $gruas->get(),
+            'gruas' => $gruas,
         ]);
     }
 
