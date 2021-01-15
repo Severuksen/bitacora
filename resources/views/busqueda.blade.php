@@ -26,7 +26,6 @@
                         <div class="gruas-blanco">
                             <div class="gruas-descripcion">
                                 <label><b>{{$gruas[$i]->tipo_grua}} {{$gruas[$i]->mod_grua}}</b></label>
-                                <label>Estado: <b>{{$gruas[$i]->estado}}</b></label>
                             </div>
                         </div>
                     </div>
@@ -34,7 +33,6 @@
             @else
                 <br><br><h2>NO SE ENCONTRARON RESULTADOS.</h2>
             @endisset
-
         </div>
     </section>
     <footer>

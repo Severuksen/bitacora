@@ -16,7 +16,7 @@ class GruasController extends Controller
      */
     public function getbusqueda()
     {
-        $gruas = Gruas::select(['id_grua', 'tipo_grua', 'img', 'mod_grua','estado'])->get();
+        $gruas = Gruas::select(['gruas.id_grua', 'gruas.tipo_grua', 'gruas.img', 'gruas.mod_grua'])->get();
 
         return view('busqueda', ['gruas' => $gruas]);
     }
@@ -28,22 +28,20 @@ class GruasController extends Controller
     {
         if($request->busqueda == NULL)
         {
-            $query  = Gruas::select(['id_grua', 'tipo_grua', 'img', 'mod_grua','estado']);
+            $query  = Gruas::select(['id_grua', 'tipo_grua', 'img', 'mod_grua']);
         } else {
-            $query  = Gruas::select(['id_grua', 'tipo_grua', 'img', 'mod_grua','estado'])->where('mod_grua', 'LIKE', "%$request->busqueda%");
+            $query  = Gruas::select(['id_grua', 'tipo_grua', 'img', 'mod_grua'])->where('mod_grua', 'LIKE', "%$request->busqueda%");
         }
 
-        $gruas  = $query->get();
-        $conteo = $query->count();
 
-        if($conteo == "")
+        if($query->count() == "")
         {
             return view('busqueda', [
                 'busqueda' => $request->busqueda
             ]);
         } else {
             return view('busqueda', [
-                'gruas' => $gruas,
+                'gruas' => $query->get(),
                 'busqueda' => $request->busqueda
             ]);
         }
@@ -54,7 +52,7 @@ class GruasController extends Controller
      */
     public function getgrua(int $id_grua): View
     {
-        $servicios = Servicios::select(['gruas.id_grua', 'gruas.tipo_grua', 'gruas.mod_grua', 'servicios.horas', 'servicios.fecha', 'mantenimiento.tipo_man', 'gruas.img', 'servicios.observaciones', 'gruas.estado'])
+        $servicios = Servicios::select(['gruas.id_grua', 'gruas.tipo_grua', 'gruas.mod_grua', 'servicios.horas', 'servicios.fecha', 'mantenimiento.tipo_man', 'gruas.img', 'servicios.observaciones', 'servicios.estado'])
                     ->join('gruas', 'gruas.id_grua', '=', 'servicios.id_grua')
                     ->join('mantenimiento', 'mantenimiento.id_man', '=', 'servicios.id_man')
                     ->where('servicios.id_grua', e($id_grua))->orderBy('servicios.fecha', 'DESC')->first();
@@ -117,7 +115,7 @@ class GruasController extends Controller
 
     public function agregargrua($request)
     {
-        $campos = ['agregargruatipo', 'agregargruafabricante', 'agregargruamodelo', 'agregargruaestado', 'agregargruafoto'];
+        $campos = ['agregargruatipo', 'agregargruafabricante', 'agregargruamodelo', 'agregargruafoto'];
 
         if(vacio($campos, $request))
         {
@@ -132,7 +130,7 @@ class GruasController extends Controller
                     return $this->vista('agregargruamensaje', 'EL FORMATO DE LA IMAGEN NO ES COMPATIBLE.');
                     break;
             }
-            Gruas::create(['tipo_grua' => e($request->agregargruatipo), 'fab_grua' => e($request->agregargruafabricante), 'mod_grua' => e($request->agregargruamodelo), 'estado' => e($request->agregargruaestado), 'img' => $img]);
+            Gruas::create(['tipo_grua' => e($request->agregargruatipo), 'fab_grua' => e($request->agregargruafabricante), 'mod_grua' => e($request->agregargruamodelo), 'img' => $img]);
             return $this->vista('agregargruamensaje', 'SE HA AGREGADO LA GRÚA.');
         }
     }
@@ -145,7 +143,7 @@ class GruasController extends Controller
 
     public function modificargrua($request)
     {
-        $campos = ['modificargruatipo', 'modificargruafabricante', 'modificargruamodelo', 'modificargruaestado'];
+        $campos = ['modificargruatipo', 'modificargruafabricante', 'modificargruamodelo'];
 
         switch(vacio($campos, $request))
         {
@@ -155,9 +153,9 @@ class GruasController extends Controller
             case false:
                 if(vacio(['modificargruafoto'], $request))
                 {
-                    $datos = ['tipo_grua' => $request->modificargruatipo, 'fab_grua' => $request->modificargruafabricante, 'mod_grua' => $request->modificargruamodelo, 'estado' => $request->modificargruaestado];
+                    $datos = ['tipo_grua' => $request->modificargruatipo, 'fab_grua' => $request->modificargruafabricante, 'mod_grua' => $request->modificargruamodelo];
                 } else {
-                    $datos = ['tipo_grua' => $request->modificargruatipo, 'fab_grua' => $request->modificargruafabricante, 'mod_grua' => $request->modificargruamodelo, 'estado' => $request->modificargruaestado, 'img' => $this->img($request->file('modificargruafoto'))];
+                    $datos = ['tipo_grua' => $request->modificargruatipo, 'fab_grua' => $request->modificargruafabricante, 'mod_grua' => $request->modificargruamodelo, 'img' => $this->img($request->file('modificargruafoto'))];
                 }
                 Gruas::whereId_grua($request->modificargruagrua)->update($datos);
                 return $this->vista('modificargruamensaje', 'SE HA MODIFICADO CON ÉXITO.');
