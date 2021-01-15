@@ -21,7 +21,7 @@
                 @for($i=0;$i<count($gruas);$i++)
                     <div class="section-gruas" onclick="window.location.assign('{{url('/grua/'.$gruas[$i]->id_grua)}}');">
                         <div class="gruas-gris">
-                            <div class="gruas-imagen" style="background-image: url('<?= $gruas[$i]->img ?>')"></div>
+                            <div class="gruas-imagen" style="background-image: url('{{asset($gruas[$i]->img)}}')"></div>
                         </div>
                         <div class="gruas-blanco">
                             <div class="gruas-descripcion">

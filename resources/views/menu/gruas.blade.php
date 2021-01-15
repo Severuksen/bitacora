@@ -39,13 +39,6 @@
                                     <label for="agregarmodelo">Modelo: </label>
                                     <input type="text" id="agregargruamodelo" name="agregargruamodelo" placeholder="Modelo de la grúa" required>
                                 </div>
-                                <div class="agregar-grua-estado">
-                                    <label for="agregarestado">Estado de la grúa: </label>
-                                    <select id="agregargruaestado" name="agregargruaestado">
-                                        <option value="ACTIVO" selected>ACTIVO</option>
-                                        <option value="INACTIVO">INACTIVO</option>
-                                    </select>
-                                </div>
                                 <div class="agregar-grua-foto">
                                     <label for="agregarfoto">Imagen de la grúa: </label>
                                     <input type="text" id="agregargruadireccion" name="agregargruadireccion" placeholder="Imagen..." value="" disabled>
@@ -96,13 +89,6 @@
                                 <div class="modificar-grua-modelo">
                                     <label for="modificargruamodelo">Modelo: </label>
                                     <input type="text" id="modificargruamodelo" name="modificargruamodelo" placeholder="Modelo de la grúa">
-                                </div>
-                                <div class="modificar-grua-estado">
-                                    <label for="modificargruaestado">Estado de la grúa:</label>
-                                    <select id="modificargruaestado" name="modificargruaestado">
-                                        <option value="ACTIVO" selected>ACTIVO</option>
-                                        <option value="INACTIVO">INACTIVO</option>
-                                    </select>
                                 </div>
                                 <div class="modificar-grua-foto">
                                     <label for="modificargruafoto">Imagen de la grúa: </label>

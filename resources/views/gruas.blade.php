@@ -3,9 +3,6 @@
 @section('titulo')
     <link rel="stylesheet" type="text/css" media="screen" href="{{asset('css/gruas.css')}}">
     <title>@isset($servicios){{$servicios->mod_grua}}@endisset :: BITÁCORA</title>
-    <style>
-
-    </style>
 @endsection
 
 @section('cuerpo')
@@ -69,29 +66,37 @@
                                     @foreach($historial as $grua)
                                         <button onclick="historial(event);">@isset($grua->tipo_man){{strtoupper($grua->tipo_man)}}@endisset - @isset($grua->fecha){{$grua->fecha}}@endisset</button>
                                         <div class="info" style="display: none;">
-                                            <table>
+                                            <table align="center">
                                                 <thead>
                                                     <tr>
-                                                        <th width="200px"><b>Fecha del servicio: </b></th>
-                                                        <th width="200px" id='servicio'>@isset($grua->fecha){{$grua->fecha}}@endisset</th>
+                                                        <th width="240px"><b>Fecha del servicio: </b></th>
+                                                        <th width="120px"><b>Horas de uso: </b></th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
                                                     <tr>
-                                                        <td><b>Horas de uso: </b></td>
-                                                        <td id='horas'>@isset($grua->horas){{$grua->horas}}@endisset hrs.</td>
+                                                        <td>@isset($grua->fecha){{$grua->fecha}}@endisset</td>
+                                                        <td>@isset($grua->horas){{$grua->horas}}@endisset hrs.</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td colspan="2" style="padding: 5px;"></td>
                                                     </tr>
                                                     <tr>
                                                         <td><b>Mantenimiento realizado: </b></td>
-                                                        <td id='mantenimiento'>@isset($grua->tipo_man){{$grua->tipo_man}}@endisset</td>
-                                                    </tr>
-                                                    <tr>
                                                         <td><b>Estado: </b></td>
-                                                        <td id='estado'>@isset($grua->estado){{$grua->estado}}@endisset</td>
                                                     </tr>
                                                     <tr>
-                                                        <td><b>Observaciones: </b></td>
-                                                        <td id='observaciones'>@isset($grua->observaciones){{$grua->observaciones}}@endisset</td>
+                                                        <td>@isset($grua->tipo_man){{$grua->tipo_man}}@endisset</td>
+                                                        <td>@isset($grua->estado){{$grua->estado}}@endisset</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td colspan="2" style="padding: 5px;"></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td colspan="2"><b>Observaciones: </b></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td colspan="2">@isset($grua->observaciones){{$grua->observaciones}}@endisset</td>
                                                     </tr>
                                                 </tbody>
                                             </table>

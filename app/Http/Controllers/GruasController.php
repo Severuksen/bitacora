@@ -8,6 +8,7 @@ use App\Gruas;
 use App\Servicios;
 use App\Manuales;
 use Illuminate\Database\QueryException;
+use Illuminate\Support\Facades\Storage;
 
 class GruasController extends Controller
 {
@@ -99,9 +100,23 @@ class GruasController extends Controller
         }
     }
 
-    public function img($foto)
+    public function img($request, $id)
     {
-        return "data:image/".$foto->extension().";base64,".base64_encode(file_get_contents($foto));
+        switch(true)
+        {
+            case (isset($request->agregargruafoto)):
+                $foto   = $request->file('agregargruafoto');
+                $modelo = str_replace(" ", "", $request->agregargruamodelo);
+            break;
+            case (isset($request->modificargruafoto)):
+                $foto   = $request->file('modificargruafoto');
+                $modelo = str_replace(" ", "", $request->modificargruamodelo);
+            break;
+        }
+        $imagen = file_get_contents($foto);
+        $nombre = $id."-".$modelo.".".$foto->extension();
+        Storage::disk('img')->put($nombre, $imagen);
+        return "/imagen/".$nombre;
     }
 
     public function vista($campo, $mensaje)
@@ -124,21 +139,22 @@ class GruasController extends Controller
             switch ($request->file('agregargruafoto')->extension()) {
                 case 'jpg':
                 case 'png':
-                    $img = $this->img($request->file('agregargruafoto'));
+                    $id  = Gruas::create(['tipo_grua' => e($request->agregargruatipo), 'fab_grua' => e($request->agregargruafabricante), 'mod_grua' => e($request->agregargruamodelo)])->id;
+                    $img = $this->img($request, $id);
+                    Gruas::whereId_grua($id)->update(['img' => $img]);
                     break;
                 default:
                     return $this->vista('agregargruamensaje', 'EL FORMATO DE LA IMAGEN NO ES COMPATIBLE.');
                     break;
             }
-            Gruas::create(['tipo_grua' => e($request->agregargruatipo), 'fab_grua' => e($request->agregargruafabricante), 'mod_grua' => e($request->agregargruamodelo), 'img' => $img]);
             return $this->vista('agregargruamensaje', 'SE HA AGREGADO LA GRÚA.');
         }
     }
 
     public function seleccionargrua($id)
     {
-        $grua = Gruas::select(['tipo_grua', 'fab_grua', 'mod_grua', 'estado'])->whereId_grua($id)->first();
-        return [$grua->tipo_grua, $grua->fab_grua, $grua->mod_grua, $grua->estado];
+        $grua = Gruas::select(['tipo_grua', 'fab_grua', 'mod_grua'])->whereId_grua($id)->first();
+        return [$grua->tipo_grua, $grua->fab_grua, $grua->mod_grua];
     }
 
     public function modificargrua($request)
@@ -155,7 +171,7 @@ class GruasController extends Controller
                 {
                     $datos = ['tipo_grua' => $request->modificargruatipo, 'fab_grua' => $request->modificargruafabricante, 'mod_grua' => $request->modificargruamodelo];
                 } else {
-                    $datos = ['tipo_grua' => $request->modificargruatipo, 'fab_grua' => $request->modificargruafabricante, 'mod_grua' => $request->modificargruamodelo, 'img' => $this->img($request->file('modificargruafoto'))];
+                    $datos = ['tipo_grua' => $request->modificargruatipo, 'fab_grua' => $request->modificargruafabricante, 'mod_grua' => $request->modificargruamodelo, 'img' => $this->img($request, $request->modificargruagrua)];
                 }
                 Gruas::whereId_grua($request->modificargruagrua)->update($datos);
                 return $this->vista('modificargruamensaje', 'SE HA MODIFICADO CON ÉXITO.');

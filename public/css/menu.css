@@ -17,7 +17,8 @@ div[class$="contenedor"] > div[class$="arriba"]{
     height: 96px;
     color: white;
     background-color: var(--verde-logo);
-    border-bottom: 1px solid gray;
+    border: 1px solid gray;
+    border-bottom: none;
 }
 
 div[class$="arriba"] > div[class$="titulo"]{

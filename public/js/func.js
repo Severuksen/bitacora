@@ -2,7 +2,7 @@ $(function(){
     $('#modificargruagrua').on('change', function(){
         let url    = '/menu/gruas';
         let data   = $('#modificargruaform').serialize()+'&seleccionargrua=1';
-        let campos = ['#modificargruatipo', '#modificargruafabricante', '#modificargruamodelo', '#modificargruaestado'];
+        let campos = ['#modificargruatipo', '#modificargruafabricante', '#modificargruamodelo'];
 
         post(url, data, campos);
     });
