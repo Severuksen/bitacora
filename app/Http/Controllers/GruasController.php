@@ -15,17 +15,16 @@ class GruasController extends Controller
     /**
      * Devuelve una lista completa de grúas.
      */
-    public function getbusqueda()
+    public function getbusqueda(): View
     {
         $gruas = Gruas::select(['gruas.id_grua', 'gruas.tipo_grua', 'gruas.img', 'gruas.mod_grua'])->get();
-
         return view('busqueda', ['gruas' => $gruas]);
     }
 
     /**
      * Devuelve una lista de grúas basadas en la busqueda.
      */
-    public function postbusqueda(Request $request)
+    public function postbusqueda(Request $request): View
     {
         if($request->busqueda == NULL)
         {
@@ -77,11 +76,17 @@ class GruasController extends Controller
         }
     }
 
-    public function getmenu()
+    /**
+     * Devuelve la vista del menu de opciones.
+     */
+    public function getmenu(): View
     {
         return $this->vista('', '');
     }
 
+    /**
+     * Recibe y distribuye las distintas peticiones al controlador.
+     */
     public function postmenu(Request $request)
     {
         switch(true){
@@ -100,7 +105,10 @@ class GruasController extends Controller
         }
     }
 
-    public function img($request, $id)
+    /**
+     * Almacena las imagenes cargadas por el usuario en el Storage.
+     */
+    public function img(object $request, int $id): string
     {
         switch(true)
         {
@@ -119,7 +127,10 @@ class GruasController extends Controller
         return "/imagen/".$nombre;
     }
 
-    public function vista($campo, $mensaje)
+    /**
+     * Devuelve la vista correspondiente.
+     */
+    public function vista(string $campo, string $mensaje): View
     {
         $gruas = Gruas::select(['id_grua', 'mod_grua'])->get();
         return view('menu.gruas', [
@@ -128,7 +139,10 @@ class GruasController extends Controller
         ]);
     }
 
-    public function agregargrua($request)
+    /**
+     * Almacena una nueva grua en la BD.
+     */
+    public function agregargrua($request): View
     {
         $campos = ['agregargruatipo', 'agregargruafabricante', 'agregargruamodelo', 'agregargruafoto'];
 
@@ -151,13 +165,19 @@ class GruasController extends Controller
         }
     }
 
-    public function seleccionargrua($id)
+    /**
+     * Devuelve los valores necesarios para modificar una grúa.
+     */
+    public function seleccionargrua(int $id): Array
     {
         $grua = Gruas::select(['tipo_grua', 'fab_grua', 'mod_grua'])->whereId_grua($id)->first();
         return [$grua->tipo_grua, $grua->fab_grua, $grua->mod_grua];
     }
 
-    public function modificargrua($request)
+    /**
+     * Almacena las modificaciones realizadas a una grúa.
+     */
+    public function modificargrua($request): View
     {
         $campos = ['modificargruatipo', 'modificargruafabricante', 'modificargruamodelo'];
 
@@ -179,7 +199,10 @@ class GruasController extends Controller
         }
     }
 
-    public function eliminargrua($request)
+    /**
+     * Elimina una grúa.
+     */
+    public function eliminargrua($request): View
     {
         try{
             Gruas::whereId_grua($request->eliminargruagrua)->delete();

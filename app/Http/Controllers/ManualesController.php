@@ -36,23 +36,22 @@ class ManualesController extends Controller
 
     public function pdf($metodo, $request)
     {
+        $baul = Storage::disk('pdf');
         switch($metodo)
         {
             case 'agregar':
                 $archivo = file_get_contents($request->file('agregarmanupdf'));
                 $nombre  = $request->agregarmanugrua."-".$request->agregarmanunombre.".pdf";
-                Storage::disk('public')->put($nombre, $archivo);
+                $baul->put($nombre, $archivo);
                 return "/storage/".$nombre;
                 break;
             case 'modificar':
-                $baul     = Storage::disk('public');
                 $archivo  = file_get_contents($request->file('modificarmanupdf'));
                 $nombre   = $request->modificarmanugrua."-".$request->modificarmanunombre.".pdf";
                 $manuales = Manuales::select(['enlace'])->whereId_man($request->modificarmanumanual)->first();
-
                 $baul->delete(substr($manuales->enlace, 8));
                 $baul->put($nombre, $archivo);
-                return "/storage/".$nombre;
+                return "/pdf/".$nombre;
                 break;
         }
     }
