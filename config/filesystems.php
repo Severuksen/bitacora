@@ -59,10 +59,10 @@ return [
             'url' => env('APP_URL').'/pdf',
             'visibility' => 'public',
         ],
-        'img' => [
+        'upload' => [
             'driver' => 'local',
-            'root' => storage_path('app/img'),
-            'url' => env('APP_URL').'/imagen',
+            'root' => storage_path('app/upload'),
+            'url' => env('APP_URL').'/upload',
             'visibility' => 'public',
         ],
         's3' => [
@@ -90,7 +90,7 @@ return [
     'links' => [
         public_path('storage') => storage_path('app\public'),
         public_path('pdf') => storage_path('app\pdf'),
-        public_path('imagen') => storage_path('app\img')
+        public_path('upload') => storage_path('app\upload')
     ],
 
 ];

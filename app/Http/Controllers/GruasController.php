@@ -123,8 +123,8 @@ class GruasController extends Controller
         }
         $imagen = file_get_contents($foto);
         $nombre = $id."-".$modelo.".".$foto->extension();
-        Storage::disk('img')->put($nombre, $imagen);
-        return "/imagen/".$nombre;
+        Storage::disk('upload')->put($nombre, $imagen);
+        return "/upload/".$nombre;
     }
 
     /**

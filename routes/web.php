@@ -21,18 +21,19 @@ Route::view('/', 'index')->name('index');
 /**
  * RUTAS DE BUSQUEDA
  */
-Route::get('busqueda', 'GruasController@getbusqueda');
-Route::post('busqueda', 'GruasController@postbusqueda');
+Route::get('/busqueda', 'GruasController@getbusqueda');
+Route::post('/busqueda', 'GruasController@postbusqueda');
 
 /**
  * RUTAS DE GRUAS
  */
-Route::get('grua/{id}', 'GruasController@getgrua');
+Route::get('/grua/{id}', 'GruasController@getgrua');
+Route::redirect('/grua','/busqueda');
 
 /**
  * RUTAS DE MENU
 */
-Route::redirect('menu','menu/gruas');
+Route::redirect('/menu','/menu/gruas');
 Route::prefix('menu')->group(function(){
     Route::get('gruas', 'GruasController@getmenu');
     Route::post('gruas', 'GruasController@postmenu');
