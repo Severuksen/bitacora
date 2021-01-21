@@ -24,8 +24,8 @@
                             <button class='enlaces' onclick='abrir(event, "manuales");'>MANUALES</button>
                         </div>
                         <div id="mantenimiento" class="contenido" style="display: flex;">
-                            @if(isset($servicios) && !isset($mensaje))
-                                <div class="container mantenimiento">
+                            <div class="container mantenimiento">
+                                @if(isset($servicios) && !isset($mensaje))
                                     <table>
                                         <thead>
                                             <tr>
@@ -53,12 +53,10 @@
 
                                         </tbody>
                                     </table>
-                                </div>
-                            @elseif(isset($servicios) && isset($mensaje))
-                                <div class="container">
+                                @elseif(isset($servicios) && isset($mensaje))
                                     <label>{{$mensaje}}</label>
-                                </div>
-                            @endif
+                                @endif
+                            </div>
                         </div>
                         <div id="historial" class="contenido centrado" style="display: none;">
                             <div class="container historial">
