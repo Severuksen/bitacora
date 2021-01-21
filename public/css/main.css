@@ -1,6 +1,23 @@
 :root{
     --rojo-gonavi: rgb(194, 33, 54);
     --verde: rgb(43,138,128);
+    --gris: rgb(226,226,226);
+}
+@font-face{
+    font-family:'FontAwesome';
+    src: url('/fuentes/fontawesome-webfont.eot?v=4.7.0');
+    src: url('/fuentes/fontawesome-webfont.eot?#iefix&v=4.7.0') format('embedded-opentype'),
+         url('/fuentes/fontawesome-webfont.woff2?v=4.7.0') format('woff2'),
+         url('/fuentes/fontawesome-webfont.woff?v=4.7.0') format('woff'),
+         url('/fuentes/fontawesome-webfont.ttf?v=4.7.0') format('truetype');
+}
+.fa{
+    display: inline-block;
+    font: normal normal normal 14px/1 FontAwesome;
+    font-size: inherit;
+    text-rendering: auto;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
 }
 header{
     display: block;
@@ -18,6 +35,100 @@ header{
 .header-contenedor{
     float: left;
 }
+.header-main-contenedor{
+    position: fixed;
+    display: block;
+    height: 130px;
+    width: 100%;
+    background-color: var(--gris);
+    box-shadow: 0px 3px 34px 0px rgba(0,0,0,0.54);
+    z-index: 999;
+}
+.header-main-icono{
+    float: left;
+    display: block;
+    width: 158px;
+    height: 112px;
+    margin-top: 5px;
+    margin-left: 50px;
+}
+.header-main-logo{
+    width: 112px;
+    height: 112px;
+    background-image: url('/img/icono.png');
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+}
+.header-main-menu{
+    float: left;
+    display: block;
+    width: auto;
+    height: inherit;
+}
+.header-main-menu a {
+    float: left;
+    display: block;
+    color: black;
+    text-align: center;
+    padding: 51px 50px;
+    text-decoration: none;
+    font-size: 17px;
+    font-weight: 700;
+    cursor: pointer;
+}
+.header-main-menu a:hover, .header-main-menu a.activo {
+    background-color: darkgray;
+    color: black;
+}
+.header-main-menu .icono-barras{
+    display: none;
+}
+
+@media (max-width: 1202px) {
+
+    .header-main-menu{
+        float: right;
+        width: inherit;
+    }
+    .header-main-menu a {
+        display: none;
+    }
+    .header-main-menu .icono-barras {
+        float: right;
+        display: block;
+    }
+    .header-main-icono{
+        position: absolute;
+        width: 300px;
+    }
+    .header-main-logo{
+        background-image: url('/img/bitacora.png');
+        height: 100px;
+        width: 375px;
+        margin-top: 9px;
+    }
+    .responsive {
+        position: relative;
+        float: right;
+    }
+    .responsive .icono-barras {
+        position: absolute;
+        right: 0;
+        top: 0;
+    }
+    .responsive a:not(:first-child) {
+        float: none;
+        display: block;
+        text-align: left;
+        width: 100%;
+        font-size: 18px;
+        background-color: var(--gris);
+        border-bottom: 1px dotted gray;
+    }
+    .responsive a:not(:first-child):hover {
+        background-color: darkgray;
+    }
+}
 .header-menu{
     display: block;
     float: right;
@@ -25,12 +136,6 @@ header{
     margin-right: 10px;
     border: 1px solid;
 }
-
-
-/* .header-menu-opciones:hover,.header-menu-boton:hover+.header-menu-opciones{
-    display: block;
-} */
-
 .header-menu-boton{
     width: 60px;
     height: 60px;
@@ -41,25 +146,6 @@ header{
 }
 .header-menu-opciones{
     display: block;
-}
-div.header-menu-opciones > ul {
-    list-style: none;
-    width: 200px;
-    height: 28px;
-    padding-inline-start: 0px;
-}
-div.header-menu-opciones > ul > li{
-    display: inline;
-    color: var(--rojo-gonavi);
-    padding: 27px 20px 26px 55px;
-    cursor: pointer;
-}
-div.header-menu-opciones > ul > li:hover{
-    color: rgb(47,85,151);
-    background-color: white;
-}
-div.header-menu-opciones > ul > li > a {
-    cursor: pointer;
 }
 .gonavi-logo, .bitacora-logo{
     display: inline-block;
@@ -130,4 +216,7 @@ footer{
 .boton-catalogo-verde:hover{
     color: var(--verde);
     border: 2px solid var(--verde);
+}
+.fa-bars:before{
+    content: "\f0c9";
 }

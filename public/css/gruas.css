@@ -16,9 +16,12 @@ table{
     margin-top: 15px;
     font-size: 16px;
 }
+.mantenimiento{
+    width: 537px;
+}
 .historial{
     display: block;
-    width: inherit;
+    width: 537px;
     height: 355px;
     margin-top: 20px;
     overflow-y: scroll;

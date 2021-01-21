@@ -2,8 +2,8 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=760, initial-scale=0.4">
-    {{-- <meta name="viewport" content="width=device-width, initial-scale=1.0"> --}}
+    {{-- <meta name="viewport" content="width=760, initial-scale=0.4"> --}}
+    <meta name="viewport" content="width=760 minimum-scale=0.2, maximum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <script type="application/ecmascript" src="{{asset('js/jquery-3.5.1.min.js')}}"></script>
     <script type="application/ecmascript" src="{{asset('js/func.js')}}"></script>
@@ -14,12 +14,20 @@
 </head>
 <body>
     <header>
-        <div class="header-contenedor">
-            <div class="gonavi-logo">
-                <img src="{{asset('img/gonavi.png')}}" width="300px" height="69px" alt="Logo de Gonavi">
+        <div class="header-main-contenedor">
+            <div class="header-main-icono">
+                <div class="header-main-logo"></div>
+                {{-- <img src="{{asset('img/icono.png')}}" width="112px" height="112px" alt="Logo de Gonavi"> --}}
             </div>
-            <div class="bitacora-logo">
-                <img src="{{asset('img/bitacora.png')}}" width="250px" height="69px" alt="Logo de Bitátoca">
+            <div class="header-main-menu" id="header-main-menu">
+                <a class="icono-barras" id="menu">
+                    <i class="fa fa-bars"></i>
+                </a>
+                <a href="{{route('index')}}">BÚSQUEDA</a>
+                <a href="{{url('/busqueda')}}">CATÁLOGO</a>
+                <a href="{{url('/menu/gruas')}}">GRUAS</a>
+                <a href="{{url('/menu/mantenimiento')}}">MANTENIMIENTO</a>
+                <a href="{{url('/menu/manuales')}}">MANUALES</a>
             </div>
         </div>
     </header>

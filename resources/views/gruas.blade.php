@@ -25,7 +25,7 @@
                         </div>
                         <div id="mantenimiento" class="contenido" style="display: flex;">
                             @if(isset($servicios) && !isset($mensaje))
-                                <div class="container">
+                                <div class="container mantenimiento">
                                     <table>
                                         <thead>
                                             <tr>
@@ -60,7 +60,7 @@
                                 </div>
                             @endif
                         </div>
-                        <div id="historial" class="contenido" style="display: none;">
+                        <div id="historial" class="contenido centrado" style="display: none;">
                             <div class="container historial">
                                 @isset($historial)
                                     @foreach($historial as $grua)

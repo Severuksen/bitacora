@@ -22,6 +22,15 @@ $(function(){
 
         post(url, data, campos);
     });
+
+    $("#menu").on('click', function(){
+        var x = document.getElementById("header-main-menu");
+        if (x.className === "header-main-menu") {
+            x.className += " responsive";
+        } else {
+            x.className = "header-main-menu";
+        }
+    });
 });
 
 function post(url, data, campos)
@@ -55,7 +64,12 @@ function historial(evento)
     for (var i=0;i<contenido.length;i++){
         contenido[i].style.display = "none";
     }
-    evento.currentTarget.nextElementSibling.style.display = 'flex';
+    var estilo = evento.currentTarget.nextElementSibling.style.display;
+    if(estilo == 'flex'){
+        evento.currentTarget.nextElementSibling.style.display = 'none';
+    } else {
+        evento.currentTarget.nextElementSibling.style.display = 'flex';
+    }
 }
 
 function direccion(event, id)

@@ -7,7 +7,7 @@ header{
 div > div[class$="contenedor"]{
     display: inline-block;
     width: 327px;
-    height: 648px;
+    height: auto;
     margin: 20px;
 }
 /*/////////////////////////////////////////////////////////////*/
