@@ -1,8 +1,10 @@
 @extends('main')
-
+<?php
+setlocale(LC_ALL,"es_ES");
+?>
 @section('titulo')
     <link rel="stylesheet" type="text/css" media="screen" href="{{asset('css/gruas.css')}}">
-    <title>@isset($servicios){{$servicios->mod_grua}}@endisset :: BITÁCORA</title>
+    <title>@isset($servicios->gruas){{$servicios->gruas->mod_grua}}@elseif(isset($servicios->mod_grua)){{$servicios->mod_grua}}@endisset :: BITÁCORA</title>
 @endsection
 
 @section('cuerpo')
@@ -11,9 +13,9 @@
             <div class="row">
                 <div class="col-xs-6">
                     <div class="grua-titulo">
-                        <h2><b>@isset($servicios->tipo_grua){{$servicios->tipo_grua.' '.$servicios->mod_grua}}@endisset</b></h2>
+                        <h2><b>@isset($servicios->gruas->tipo_grua){{$servicios->gruas->tipo_grua.' '.$servicios->gruas->mod_grua}}@elseif(isset($servicios->tipo_grua)){{$servicios->tipo_grua.' '.$servicios->mod_grua}}@endisset</b></h2>
                     </div>
-                    <div class="grua-imagen" style="background-image: url('@isset($servicios->img)<?= $servicios->img ?>@endisset');"></div>
+                    <div class="grua-imagen" style="background-image: url('@isset($servicios->gruas->img)<?= $servicios->gruas->img ?>@elseif(isset($servicios->img))<?= $servicios->img ?>@endisset');"></div>
                 </div>
                 <div class="col-xs-6">
                     <div class="grua-tab">
@@ -40,7 +42,7 @@
                                             </tr>
                                             <tr>
                                                 <td><b>Mantenimiento realizado: </b></td>
-                                                <td>@isset($servicios->tipo_man){{$servicios->tipo_man}}@endisset</td>
+                                                <td>@isset($servicios->mantenimiento->tipo_man){{$servicios->mantenimiento->tipo_man}}@endisset</td>
                                             </tr>
                                             <tr>
                                                 <td><b>Estado: </b></td>
@@ -62,7 +64,7 @@
                             <div class="container historial">
                                 @isset($historial)
                                     @foreach($historial as $grua)
-                                        <button onclick="historial(event);">@isset($grua->tipo_man){{strtoupper($grua->tipo_man)}}@endisset - @isset($grua->fecha){{$grua->fecha}}@endisset</button>
+                                        <button onclick="historial(event);">@isset($grua->mantenimiento->tipo_man){{strtoupper($grua->mantenimiento->tipo_man)}}@endisset - @isset($grua->fecha){{$grua->fecha}}@endisset</button>
                                         <div class="info" style="display: none;">
                                             <table align="center">
                                                 <thead>
@@ -84,7 +86,7 @@
                                                         <td><b>Estado: </b></td>
                                                     </tr>
                                                     <tr>
-                                                        <td>@isset($grua->tipo_man){{$grua->tipo_man}}@endisset</td>
+                                                        <td>@isset($grua->mantenimiento->tipo_man){{$grua->mantenimiento->tipo_man}}@endisset</td>
                                                         <td>@isset($grua->estado){{$grua->estado}}@endisset</td>
                                                     </tr>
                                                     <tr>

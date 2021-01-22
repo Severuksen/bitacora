@@ -41,13 +41,13 @@ class ManualesController extends Controller
         {
             case 'agregar':
                 $archivo = file_get_contents($request->file('agregarmanupdf'));
-                $nombre  = $request->agregarmanugrua."-".$request->agregarmanunombre.".pdf";
+                $nombre  = $request->agregarmanugrua."-".str_replace(" ", "", $request->agregarmanunombre).".pdf";
                 $baul->put($nombre, $archivo);
-                return "/storage/".$nombre;
+                return "/pdf/".$nombre;
                 break;
             case 'modificar':
                 $archivo  = file_get_contents($request->file('modificarmanupdf'));
-                $nombre   = $request->modificarmanugrua."-".$request->modificarmanunombre.".pdf";
+                $nombre   = $request->modificarmanugrua."-".str_replace(" ", "", $request->modificarmanunombre).".pdf";
                 $manuales = Manuales::select(['enlace'])->whereId_man($request->modificarmanumanual)->first();
                 $baul->delete(substr($manuales->enlace, 8));
                 $baul->put($nombre, $archivo);

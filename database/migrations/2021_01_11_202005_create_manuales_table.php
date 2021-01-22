@@ -14,7 +14,7 @@ class CreateManualesTable extends Migration
     public function up()
     {
         Schema::create('manuales', function (Blueprint $table) {
-            $table->id('id_man');
+            $table->increments('id_man');
             $table->bigInteger('id_grua')->unsigned();
             $table->string('nombre', 47);
             $table->string('descripcion', 222);

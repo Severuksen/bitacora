@@ -38,7 +38,7 @@ header{
 .header-main-contenedor{
     position: fixed;
     display: block;
-    height: 130px;
+    height: 110px;
     width: 100%;
     background-color: var(--gris);
     box-shadow: 0px 3px 34px 0px rgba(0,0,0,0.54);
@@ -48,13 +48,13 @@ header{
     float: left;
     display: block;
     width: 158px;
-    height: 112px;
+    height: 90px;
     margin-top: 5px;
     margin-left: 50px;
 }
 .header-main-logo{
-    width: 112px;
-    height: 112px;
+    width: 90px;
+    height: 90px;
     background-image: url('/img/icono.png');
     background-repeat: no-repeat;
     background-size: 100% 100%;
@@ -70,7 +70,7 @@ header{
     display: block;
     color: black;
     text-align: center;
-    padding: 51px 50px;
+    padding: 42px 50px;
     text-decoration: none;
     font-size: 17px;
     font-weight: 700;
@@ -103,8 +103,8 @@ header{
     }
     .header-main-logo{
         background-image: url('/img/bitacora.png');
-        height: 100px;
-        width: 375px;
+        height: 77px;
+        width: 300px;
         margin-top: 9px;
     }
     .responsive {
@@ -127,6 +127,10 @@ header{
     }
     .responsive a:not(:first-child):hover {
         background-color: darkgray;
+    }
+    .row{
+        justify-content: center;
+        align-items: center;
     }
 }
 .header-menu{

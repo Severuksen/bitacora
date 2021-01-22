@@ -17,7 +17,7 @@ class GruasController extends Controller
      */
     public function getbusqueda(): View
     {
-        $gruas = Gruas::select(['gruas.id_grua', 'gruas.tipo_grua', 'gruas.img', 'gruas.mod_grua'])->get();
+        $gruas = Gruas::get();
         return view('busqueda', ['gruas' => $gruas]);
     }
 
@@ -26,11 +26,11 @@ class GruasController extends Controller
      */
     public function postbusqueda(Request $request): View
     {
-        if($request->busqueda == NULL)
+        $query  = Gruas::select(['id_grua', 'tipo_grua', 'img', 'mod_grua']);
+
+        if($request->busqueda != NULL)
         {
-            $query  = Gruas::select(['id_grua', 'tipo_grua', 'img', 'mod_grua']);
-        } else {
-            $query  = Gruas::select(['id_grua', 'tipo_grua', 'img', 'mod_grua'])->where('mod_grua', 'LIKE', "%$request->busqueda%");
+            $query = $query->where('mod_grua', 'LIKE', "%$request->busqueda%");
         }
 
 
@@ -52,17 +52,11 @@ class GruasController extends Controller
      */
     public function getgrua(int $id_grua): View
     {
-        $servicios = Servicios::select(['gruas.id_grua', 'gruas.tipo_grua', 'gruas.mod_grua', 'servicios.horas', 'servicios.fecha', 'mantenimiento.tipo_man', 'gruas.img', 'servicios.observaciones', 'servicios.estado'])
-                    ->join('gruas', 'gruas.id_grua', '=', 'servicios.id_grua')
-                    ->join('mantenimiento', 'mantenimiento.id_man', '=', 'servicios.id_man')
-                    ->where('servicios.id_grua', e($id_grua))->orderBy('servicios.fecha', 'DESC')->first();
+        $consulta  = Servicios::whereId_grua(e($id_grua))->orderBy('fecha', 'DESC');
+        $servicios = $consulta->first();
+        $historial = $consulta->get();
 
-        $historial = Servicios::select(['servicios.fecha', 'servicios.horas', 'mantenimiento.tipo_man', 'servicios.observaciones', 'servicios.estado'])
-                    ->join('gruas', 'servicios.id_grua', '=', 'gruas.id_grua')
-                    ->join('mantenimiento', 'mantenimiento.id_man', '=', 'servicios.id_man')
-                    ->where('servicios.id_grua', e($id_grua))->orderBy('servicios.fecha', 'DESC')->get();
-
-        $manuales  = Manuales::select(['nombre','descripcion', 'enlace'])->whereId_grua($id_grua)->get();
+        $manuales  = Manuales::whereId_grua($id_grua)->get();
 
         switch(true)
         {
@@ -110,6 +104,7 @@ class GruasController extends Controller
      */
     public function img(object $request, int $id): string
     {
+
         switch(true)
         {
             case (isset($request->agregargruafoto)):
@@ -121,9 +116,19 @@ class GruasController extends Controller
                 $modelo = str_replace(" ", "", $request->modificargruamodelo);
             break;
         }
-        $imagen = file_get_contents($foto);
-        $nombre = $id."-".$modelo.".".$foto->extension();
-        Storage::disk('upload')->put($nombre, $imagen);
+        $extension = $foto->extension();
+        switch($extension){
+            case 'jpg':
+                $img = imagecreatefromjpeg($foto);
+                break;
+            case 'png':
+                $img = imagecreatefrompng($foto);
+                break;
+        }
+
+        $nombre = $id."-".$modelo.".jpg";
+        imagejpeg($img, storage_path().'\\app\\upload\\'.$nombre, 70);
+        imagedestroy($img);
         return "/upload/".$nombre;
     }
 
@@ -132,7 +137,7 @@ class GruasController extends Controller
      */
     public function vista(string $campo, string $mensaje): View
     {
-        $gruas = Gruas::select(['id_grua', 'mod_grua'])->get();
+        $gruas = Gruas::get();
         return view('menu.gruas', [
             $campo => $mensaje,
             'gruas' => $gruas,
@@ -150,7 +155,7 @@ class GruasController extends Controller
         {
             return $this->vista('agregargruamensaje', 'NO DEBES DEJAR CAMPOS VACIOS.');
         } else {
-            switch ($request->file('agregargruafoto')->extension()) {
+            switch ($request->file('agregargruafoto')->extension()){
                 case 'jpg':
                 case 'png':
                     $id  = Gruas::create(['tipo_grua' => e($request->agregargruatipo), 'fab_grua' => e($request->agregargruafabricante), 'mod_grua' => e($request->agregargruamodelo)])->id;
@@ -170,7 +175,7 @@ class GruasController extends Controller
      */
     public function seleccionargrua(int $id): Array
     {
-        $grua = Gruas::select(['tipo_grua', 'fab_grua', 'mod_grua'])->whereId_grua($id)->first();
+        $grua = Gruas::whereId_grua($id)->first();
         return [$grua->tipo_grua, $grua->fab_grua, $grua->mod_grua];
     }
 
@@ -179,9 +184,7 @@ class GruasController extends Controller
      */
     public function modificargrua($request): View
     {
-        $campos = ['modificargruatipo', 'modificargruafabricante', 'modificargruamodelo'];
-
-        switch(vacio($campos, $request))
+        switch(vacio(['modificargruatipo', 'modificargruafabricante', 'modificargruamodelo'], $request))
         {
             case true:
                 return $this->vista('modificargruamensaje', 'NO DEBES DEJAR CAMPOS VACIOS.');

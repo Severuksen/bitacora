@@ -18,18 +18,18 @@
     <section>
         <div class="container">
             @isset($gruas)
-                @for($i=0;$i<count($gruas);$i++)
-                    <div class="section-gruas" onclick="window.location.assign('{{url('/grua/'.$gruas[$i]->id_grua)}}');">
+            @foreach ($gruas as $grua)
+                    <div class="section-gruas" onclick="window.location.assign('{{url('/grua/'.$grua->id_grua)}}');">
                         <div class="gruas-gris">
-                            <div class="gruas-imagen" style="background-image: url('{{asset($gruas[$i]->img)}}')"></div>
+                            <div class="gruas-imagen" style="background-image: url('{{asset($grua->img)}}')"></div>
                         </div>
                         <div class="gruas-blanco">
                             <div class="gruas-descripcion">
-                                <label><b>{{$gruas[$i]->tipo_grua}} {{$gruas[$i]->mod_grua}}</b></label>
+                                <label><b>{{$grua->tipo_grua}} {{$grua->mod_grua}}</b></label>
                             </div>
                         </div>
                     </div>
-                @endfor
+                @endforeach
             @else
                 <br><br><h2>NO SE ENCONTRARON RESULTADOS.</h2>
             @endisset
