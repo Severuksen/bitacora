@@ -58,7 +58,7 @@ setlocale(LC_ALL,"es_ES");
                                 @elseif(isset($servicios) && isset($mensaje))
                                     <label>{{$mensaje}}</label>
                                 @endif
-                            </div>
+                                </div>
                         </div>
                         <div id="historial" class="contenido centrado" style="display: none;">
                             <div class="container historial">
