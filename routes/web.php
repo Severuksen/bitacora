@@ -44,3 +44,8 @@ Route::prefix('menu')->group(function(){
     Route::get('manuales', 'ManualesController@getmenu');
     Route::post('manuales', 'ManualesController@postmenu');
 });
+
+/**
+ * RUTA CON VUE
+ */
+Route::view('/vue', 'layouts.app');

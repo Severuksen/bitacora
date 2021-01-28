@@ -12,27 +12,26 @@
     <title>BITACORA :: PÁGINA PRINCIPAL</title>
 </head>
 <body>
-    <header>
-        <div class="header-main-contenedor">
-            <div class="header-main-icono">
-                <div class="header-main-logo"></div>
-                {{-- <img src="{{asset('img/icono.png')}}" width="112px" height="112px" alt="Logo de Gonavi"> --}}
+    <div id="app">
+        <header>
+            <div class="header-main-contenedor">
+                <div class="header-main-icono">
+                    <div class="header-main-logo"></div>
+                    {{-- <img src="{{asset('img/icono.png')}}" width="112px" height="112px" alt="Logo de Gonavi"> --}}
+                </div>
+                <div class="header-main-menu" id="header-main-menu">
+                    <a class="icono-barras" id="menu">
+                        <i class="fa fa-bars"></i>
+                    </a>
+                    <a href="{{route('index')}}">BÚSQUEDA</a>
+                    <a href="{{url('/busqueda')}}">CATÁLOGO</a>
+                    <a href="{{url('/menu/gruas')}}">GRUAS</a>
+                    <a href="{{url('/menu/mantenimiento')}}">MANTENIMIENTO</a>
+                    <a href="{{url('/menu/manuales')}}">MANUALES</a>
+                </div>
             </div>
-            <div class="header-main-menu" id="header-main-menu">
-                <a class="icono-barras" id="menu">
-                    <i class="fa fa-bars"></i>
-                </a>
-                <a href="{{route('index')}}">BÚSQUEDA</a>
-                <a href="{{url('/busqueda')}}">CATÁLOGO</a>
-                <a href="{{url('/menu/gruas')}}">GRUAS</a>
-                <a href="{{url('/menu/mantenimiento')}}">MANTENIMIENTO</a>
-                <a href="{{url('/menu/manuales')}}">MANUALES</a>
-            </div>
-        </div>
-    </header>
-    @yield('cuerpo')
+        </header>
+        @yield('cuerpo')
+    </div>
 </body>
 </html>
-
-
-

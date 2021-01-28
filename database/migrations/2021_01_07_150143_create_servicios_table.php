@@ -13,13 +13,13 @@ class CreateServiciosTable extends Migration
      */
     public function up()
     {
-        Schema::create('servicios', function (Blueprint $table) {
-            $table->increments('id_srv');
-            $table->date('fecha');
+        Schema::create('servicios', function (Blueprint $table){
+            $table->id('id_srv');
             $table->bigInteger('id_grua')->unsigned();
             $table->bigInteger('id_man')->unsigned();
-            $table->integer('horas')->unsigned()->default(0);
             $table->string('observaciones', 200)->nullable();
+            $table->date('fecha');
+            $table->integer('horas')->unsigned()->default(0);
             $table->string('estado', 8)->default('ACTIVO');
             $table->foreign('id_grua')
                 ->references('id_grua')

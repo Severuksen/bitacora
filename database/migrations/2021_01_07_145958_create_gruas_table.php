@@ -14,7 +14,7 @@ class CreateGruasTable extends Migration
     public function up()
     {
         Schema::create('gruas', function (Blueprint $table) {
-            $table->increments('id_grua');
+            $table->id('id_grua');
             $table->string('tipo_grua', 13);
             $table->string('fab_grua', 30);
             $table->string('mod_grua');
