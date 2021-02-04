@@ -48,4 +48,4 @@ Route::prefix('menu')->group(function(){
 /**
  * RUTA CON VUE
  */
-Route::view('/vue', 'layouts.app');
+Route::view('/react', 'layouts.app');

@@ -17,10 +17,10 @@ use Illuminate\Support\Str;
 |
 */
 
-/* $factory->define(Gruas::class, function (Faker $faker) {
+$factory->define(Gruas::class, function (Faker $faker) {
     return [
         'tipo_grua' => $faker->name,
         'fab_grua' => $faker->sentence,
         'mod_grua' =>$faker->sentence
     ];
-}); */
+});
