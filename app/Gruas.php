@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Gruas extends Model
 {
     protected $table   = 'gruas';
-    public $publicKey  = 'id_grua';
+    public $primaryKey = 'id_grua';
     protected $guarded = [];
 
     public function servicios()

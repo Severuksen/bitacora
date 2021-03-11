@@ -1,3 +1,6 @@
+/**
+* MAIN CSS
+*/
 :root{
     --rojo-gonavi: rgb(194, 33, 54);
     --verde: rgb(43,138,128);
@@ -224,3 +227,6 @@ footer{
 .fa-bars:before{
     content: "\f0c9";
 }
+/**
+* FIN MAIN CSS
+*/

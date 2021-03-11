@@ -10944,3 +10944,456 @@ a.text-dark:focus {
   }
 }
 
+/**
+* MAIN CSS
+*/
+
+:root {
+  --rojo-gonavi: rgb(194, 33, 54);
+  --verde: rgb(43,138,128);
+  --gris: rgb(226,226,226);
+}
+
+@font-face {
+  font-family: "FontAwesome";
+  src: url("/fuentes/fontawesome-webfont.eot?v=4.7.0");
+  src: url("/fuentes/fontawesome-webfont.eot?#iefix&v=4.7.0") format("embedded-opentype"), url("/fuentes/fontawesome-webfont.woff2?v=4.7.0") format("woff2"), url("/fuentes/fontawesome-webfont.woff?v=4.7.0") format("woff"), url("/fuentes/fontawesome-webfont.ttf?v=4.7.0") format("truetype");
+}
+
+.fa {
+  display: inline-block;
+  font: normal normal normal 14px/1 FontAwesome;
+  font-size: inherit;
+  text-rendering: auto;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+header {
+  display: block;
+  top: 0px;
+  left: 0px;
+  width: 100%;
+  height: 240px;
+  background-color: var(--light);
+}
+
+.centrado {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.header-contenedor {
+  float: left;
+}
+
+.header-main-contenedor {
+  position: fixed;
+  display: block;
+  height: 110px;
+  width: 100%;
+  background-color: var(--gris);
+  box-shadow: 0px 3px 34px 0px rgba(0, 0, 0, 0.54);
+  z-index: 999;
+}
+
+.header-main-icono {
+  float: left;
+  display: block;
+  width: 158px;
+  height: 90px;
+  margin-top: 5px;
+  margin-left: 50px;
+}
+
+.header-main-logo {
+  width: 90px;
+  height: 90px;
+  background-image: url("/img/icono.png");
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+}
+
+.header-main-menu {
+  float: left;
+  display: block;
+  width: auto;
+  height: inherit;
+}
+
+.header-main-menu a {
+  float: left;
+  display: block;
+  color: black;
+  text-align: center;
+  padding: 42px 50px;
+  text-decoration: none;
+  font-size: 17px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.header-main-menu a:hover,
+.header-main-menu a.activo {
+  background-color: darkgray;
+  color: black;
+}
+
+.header-main-menu .icono-barras {
+  display: none;
+}
+
+@media (max-width: 1202px) {
+  .header-main-menu {
+    float: right;
+    width: inherit;
+  }
+
+  .header-main-menu a {
+    display: none;
+  }
+
+  .header-main-menu .icono-barras {
+    float: right;
+    display: block;
+  }
+
+  .header-main-icono {
+    position: absolute;
+    width: 300px;
+  }
+
+  .header-main-logo {
+    background-image: url("/img/bitacora.png");
+    height: 77px;
+    width: 300px;
+    margin-top: 9px;
+  }
+
+  .responsive {
+    position: relative;
+    float: right;
+  }
+
+  .responsive .icono-barras {
+    position: absolute;
+    right: 0;
+    top: 0;
+  }
+
+  .responsive a:not(:first-child) {
+    float: none;
+    display: block;
+    text-align: left;
+    width: 100%;
+    font-size: 18px;
+    background-color: var(--gris);
+    border-bottom: 1px dotted gray;
+  }
+
+  .responsive a:not(:first-child):hover {
+    background-color: darkgray;
+  }
+
+  .row {
+    justify-content: center;
+    align-items: center;
+  }
+}
+
+.header-menu {
+  display: block;
+  float: right;
+  margin-top: 10px;
+  margin-right: 10px;
+  border: 1px solid;
+}
+
+.header-menu-boton {
+  width: 60px;
+  height: 60px;
+  cursor: pointer;
+  background-image: url("/img/menu.png");
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+}
+
+.header-menu-opciones {
+  display: block;
+}
+
+.gonavi-logo,
+.bitacora-logo {
+  display: inline-block;
+  width: 338px;
+  height: 69px;
+  margin-top: 10px;
+  margin-left: 10px;
+  border-right: 3px solid var(--rojo-gonavi);
+}
+
+.bitacora-logo {
+  width: 250px;
+  height: 69px;
+  margin-top: unset;
+  margin-left: 20px;
+  border-right: unset;
+}
+
+@-webkit-keyframes fadeEffect {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeEffect {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+.tab button {
+  border: none;
+  outline: none;
+  cursor: pointer;
+  padding: 14px 16px;
+  transition: 0.3s;
+  background-color: unset;
+}
+
+.tab button:hover {
+  background-color: unset;
+  font-weight: 700;
+  color: var(--verde);
+  border-bottom: 2px solid var(--verde);
+}
+
+.tab button.activo {
+  color: var(--verde);
+  font-weight: 700;
+  border-bottom: 2px solid var(--verde);
+}
+
+.container > label {
+  font-size: 25px;
+  font-weight: 700;
+}
+
+footer {
+  margin: 50px 0 50px 0;
+}
+
+.boton-catalogo,
+.boton-catalogo-verde {
+  width: 330px;
+  height: 89px;
+  color: white;
+  background-color: var(--rojo-gonavi);
+  border: 0;
+  font-size: 20px;
+  font-weight: 700;
+}
+
+.boton-catalogo:hover,
+.boton-catalogo-verde:hover {
+  color: var(--rojo-gonavi);
+  border: 2px solid var(--rojo-gonavi);
+  background-color: white;
+}
+
+.boton-catalogo-verde:hover {
+  color: var(--verde);
+  border: 2px solid var(--verde);
+}
+
+.fa-bars:before {
+  content: "\F0C9";
+}
+
+/**
+* FIN MAIN CSS
+*/
+
+/**
+* INDEX CSS
+*/
+
+#index > section {
+  display: block;
+  width: 100%;
+  height: 300px;
+}
+
+#index > footer {
+  display: block;
+  width: 100%;
+  height: 100px;
+  margin-bottom: 50px;
+}
+
+div.block-section,
+div > label {
+  display: block;
+}
+
+div.block-section {
+  margin-top: 50px;
+}
+
+div > label {
+  font-size: 30px;
+  font-weight: 700;
+  font-family: sans-serif;
+}
+
+input#busqueda {
+  display: inline-block;
+  width: 500px;
+  padding: 10px;
+  padding-right: 43px;
+  font-size: 20px;
+  border: 1px solid var(--rojo-gonavi);
+  border-radius: 5px;
+}
+
+.lupa {
+  display: inline-block;
+  width: 30px;
+  height: 30px;
+  margin-bottom: -8px;
+  margin-left: -38px;
+  border: 0;
+  cursor: pointer;
+  background-color: unset;
+  background-image: url("/img/lupa-roja.png");
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+}
+
+.lupa:hover {
+  background-image: url("/img/lupa-verde.png");
+}
+
+.boton-catalogo,
+.boton-catalogo-verde {
+  width: 330px;
+  height: 89px;
+  color: white;
+  background-color: var(--rojo-gonavi);
+  border: 0;
+  font-size: 20px;
+  font-weight: 700;
+}
+
+.boton-catalogo-verde {
+  width: 120px;
+  height: 89px;
+  background-color: var(--verde);
+}
+
+.boton-catalogo:hover,
+.boton-catalogo-verde:hover {
+  color: var(--rojo-gonavi);
+  border: 2px solid var(--rojo-gonavi);
+  background-color: white;
+}
+
+.boton-catalogo-verde:hover {
+  color: var(--verde);
+  border: 2px solid var(--verde);
+}
+
+div > input {
+  margin-right: 20px;
+}
+
+/**
+* FIN INDEX CSS
+*/
+
+/**
+* BUSQUEDA CSS
+*/
+
+header {
+  height: 200px;
+}
+
+.container {
+  max-width: 1500px;
+  min-width: 760px;
+}
+
+.section-gruas {
+  display: inline-block;
+  width: 326px;
+  height: 400px;
+  margin: 13px;
+  z-index: 99;
+}
+
+.section-gruas:hover {
+  cursor: pointer;
+  box-shadow: 5px 5px 5px 5px black;
+  -moz-box-shadow: inset 0 0 10px black;
+  -webkit-box-shadow: inset 0 0 10px black;
+}
+
+div.gruas-gris {
+  display: block;
+  width: inherit;
+  height: 304px;
+  background-color: #e2e2e2;
+  border: 1px solid gray;
+  border-bottom: unset;
+}
+
+div.gruas-blanco {
+  display: block;
+  width: inherit;
+  height: 96px;
+  background-color: white;
+  border: 1px solid gray;
+  border-top: unset;
+}
+
+div.gruas-imagen {
+  display: block;
+  width: 269px;
+  height: 200px;
+  margin-top: 57px;
+  margin-left: 26px;
+  background-image: url("/img/forklift-pequena-roja.png");
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+}
+
+div.gruas-descripcion {
+  display: inline-block;
+  width: 300px;
+  height: 66px;
+  margin-top: 6px;
+  margin-left: 13px;
+  font-size: 18px;
+}
+
+.gruas-descripcion > label {
+  display: block;
+  font-size: 18px;
+  line-height: unset;
+  margin-bottom: 0px;
+}
+
+/**
+* FIN BUSQUEDA CSS
+*/
+

@@ -1,3 +1,6 @@
+/**
+* BUSQUEDA CSS
+*/
 header{
     height: 200px;
 }
@@ -58,3 +61,6 @@ div.gruas-descripcion{
     line-height: unset;
     margin-bottom: 0px;
 }
+/**
+* FIN BUSQUEDA CSS
+*/
